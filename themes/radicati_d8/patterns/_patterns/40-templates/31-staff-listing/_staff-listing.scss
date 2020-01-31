@@ -1,0 +1,111 @@
+@import "../../variables";
+
+.staff-listing-page__hero-image {
+  position: relative;
+}
+
+.staff-listing-page__title-wrapper--larger-screens {
+  display: none;
+
+  @include breakpoint($breakpoint-md) {
+    background-color: rgba(0, 0, 0, .8);
+    @include rem('bottom', 25px);
+    display: block;
+    left: 50%;
+    @include rem('padding', 10px 20px);
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    width: 84%;
+  }
+
+  .staff-listing-page__title {
+    color: white;
+    font-family: $font--century-school;
+    @include rem('font-size', 35px);
+    font-style: italic;
+    font-weight: normal;
+    @include rem('letter-spacing', -0.23);
+  }
+}
+
+
+.staff-listing-page__title-wrapper--smaller-screens {
+
+  @include breakpoint($breakpoint-md) {
+    display: none;
+  }
+
+  .staff-listing-page__title {
+    line-height: 1.2;
+    @include rem('margin-bottom', 7px);
+    text-transform: uppercase;
+  }
+}
+
+.staff-listing-page__sub-title {
+  color: black;
+  font-family: GTAmerica, sans-serif;
+  @include rem('font-size', 32px);
+  font-stretch: condensed;
+  font-weight: normal;
+  line-height: 1.19;
+  @include rem('margin-bottom', 33px);
+}
+
+.staff-listing-page__content {
+  @include rem('font-size', 18px);
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include rem('margin-bottom', 20px);
+  }
+}
+
+
+
+/////////////////
+
+
+// .card--staff-listing {
+//   @include rem('height', 200px);
+//   @include rem('margin-bottom', 12px);
+
+//   @include breakpoint($breakpoint-md) {
+//     @include rem('height', 321px);
+//   }
+
+//   .card__body {
+//     @include rem('height', 72px);
+//     @include rem('bottom', 25px);
+//     left: 50%;
+//     transform: translateX(-50%);
+
+//     width: 90%;
+//     position: absolute;
+//     background: rgba(black, 0.8);
+
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+
+//     @include breakpoint($breakpoint-md) {
+//       width: 84%;
+//     }
+
+//   }
+
+
+//   .card__title {
+//     @include rem('font-size', 35px);
+//     @include rem('letter-spacing', -0.23);
+//     font-style: italic;
+//     font-weight: normal;
+//     color: white;
+//     font-family: $font--century-school;
+//   }
+
+// }

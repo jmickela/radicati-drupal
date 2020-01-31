@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html class="{{ htmlClass }}">
+  <head>
+    <title>{{ title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    
+    <link rel="stylesheet" href="../../css/hip-styles.css?{{ cacheBuster }}" media="all" />
+    <link rel="stylesheet" href="../../css/pattern-scaffolding.css?{{ cacheBuster }}" media="all" />
+
+    <link rel="stylesheet" href="../../css/libs/superfish.css?{{ cacheBuster }}" media="all" />
+
+
+    <script src="//platform-api.sharethis.com/js/sharethis.js#property=5bd8b1f677b0b50011794ec9&product=custom-share-buttons"></script>
+
+    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    {{ patternLabHead | raw }}
+    <!-- End Pattern Lab -->
+    
+  </head>
+  <body class="{{ bodyClass }} {{ patternPartial }}" {{ bodyExtraAttribute }}>
+  

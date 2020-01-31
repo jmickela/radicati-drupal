@@ -1,0 +1,6 @@
+@import "../../variables";
+
+.content-wysiwyg {
+  @include rem('margin', 25px 0 25px 0);
+  line-height: 1.6;
+}

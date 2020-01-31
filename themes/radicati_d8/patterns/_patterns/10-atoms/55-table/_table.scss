@@ -1,0 +1,35 @@
+@import "../../variables";
+
+table {
+  border-collapse: collapse;
+  border: 0;
+  background-color: $color--pale-grey;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+thead {
+  @include rem('font-size', 20px);
+  background-color: $color--light-orange;
+  font-weight: bold;
+  color: black;
+
+}
+
+
+th,
+td {
+  @include rem('font-size', 20px);
+  border: 0;
+  @include rem('padding', 15px 5px);
+  text-align: left;
+}
+
+tr {
+  border-bottom: 1px solid $color--dark-gray;
+
+  &:last-child {
+    border: 0;
+  }
+}

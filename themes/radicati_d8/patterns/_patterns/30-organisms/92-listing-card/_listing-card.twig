@@ -1,0 +1,26 @@
+{% include "@molecules/00-card/_card.twig" with {
+  card: {
+    mods: ['listing-card'],
+    is_article: true,
+    link: {
+      href: url
+    },
+    background_image: {
+      content: content.field_image
+    },
+    body: {
+      title: {
+        content: label
+      }
+    },
+    footer: {
+      title: {
+        content: label
+      },
+      content: {
+        content: summary|trim|length > 100 ? summary|trim|truncate(100) ~ '...' : summary|trim
+      },
+      label: "Read More"|trans
+    }
+  }
+} only %}

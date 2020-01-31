@@ -1,0 +1,74 @@
+.path-search {
+
+  .search-results__terms {
+    display: flex;
+    @include rem('margin-bottom', 20px);
+    width: 100%;
+
+    @include breakpoint($breakpoint-sm) {
+      margin-left: auto;
+      margin-right: auto;
+      @include rem('width', 500px);
+    }
+  }
+
+  .search-results__terms--label {
+    margin-right: .5ex;
+  }
+
+  .search-results__terms--value,
+  .search-results__terms--label {
+    @extend h3;
+    font-weight: bold;
+  }
+
+  .view-filters {
+    @include rem('margin-bottom', 50px);
+  }
+
+  #views-exposed-form-aclunc-search-results-page-1 {
+    $search-button-width: 100px;
+    $search-button-width-unitless: $search-button-width /1px;
+
+    @include rem('margin-bottom', 30px);
+
+
+    .form--inline {
+      display: flex;
+
+      // the div around the search textbox
+      .form-item.form-type-textfield {
+        margin: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: calc(100% - #{$search-button-width});
+        flex-basis: calc(100% - (#{$search-button-width-unitless}rem / 10));
+      }
+
+      label {
+        display: none;
+      }
+
+      // the search textbox
+      input[type='text'] {
+        width: 100%;
+      }
+
+      // the div around the submit button
+      .form-actions.form-wrapper {
+        @include rem('flex', 1 1 $search-button-width);
+        margin: 0;
+      }
+
+      // the submit button
+      input.button.button.form-submit {
+        @include rem('margin-top', 24px);
+        min-width: 100%;
+      }
+    }
+  }
+
+  .view-empty {
+    padding-bottom: 50px;
+  }
+}

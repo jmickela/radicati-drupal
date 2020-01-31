@@ -1,0 +1,5 @@
+name: 'Rootid EX Enhancements'
+type: module
+description: 'Module that enhances the Drupal 8 Editor eXperience.'
+core: 8.x
+package: 'rootid'

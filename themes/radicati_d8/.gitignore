@@ -1,0 +1,12 @@
+# Gulpfile.local #
+##################
+gulpfile.local.json
+
+
+# node modules #
+################
+node_modules
+
+# Pattern Lab Files #
+#####################
+.pattern-lab

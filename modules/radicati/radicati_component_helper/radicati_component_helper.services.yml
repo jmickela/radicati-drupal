@@ -1,0 +1,5 @@
+services:
+  radicati_component_helper.twig.TwigExtensions:
+    class: Drupal\radicati_component_helper\TwigExtension\TwigExtensions
+    tags:
+      - {name: twig.extension}

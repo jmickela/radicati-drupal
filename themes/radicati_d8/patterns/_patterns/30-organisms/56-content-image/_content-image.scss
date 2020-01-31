@@ -1,0 +1,48 @@
+@import "../../variables";
+
+.content-image {
+  @include rem('margin', 25px 0 40px 0);
+
+  @include rem('padding', 0 15px);
+
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.content-image--center {
+  @include rem('padding', 0 15px);
+}
+
+.content-image--left {
+
+  @include breakpoint($breakpoint-lg) {
+    float: left;
+    @include rem('margin', 15px 25px 15px 0);
+    max-width: 40%;
+    padding: 0;
+  }
+
+}
+
+.content-image--right {
+
+  @include breakpoint($breakpoint-lg) {
+    float: right;
+    @include rem('margin', 15px 0 25px 15px);
+    max-width: 40%;
+    padding: 0;
+  }
+}
+
+.content-image__caption {
+  @include rem('font-size', 15px);
+  @include rem('margin-top', 6px);
+
+  font-style: italic;
+  letter-spacing: 0;
+  color: $color--blackish;
+}

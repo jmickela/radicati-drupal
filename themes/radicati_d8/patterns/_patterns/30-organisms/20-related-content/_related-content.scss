@@ -1,0 +1,30 @@
+@import "../../variables";
+
+.related-content {
+  background-color: $color--light-azure;
+}
+
+.related-content__header {
+  @include rem('height', 73px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../images/related-content-bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+
+.related-content__title {
+  @include rem('padding', 7px 10px 0 10px);
+  line-height: 1;
+  text-transform: uppercase;
+  display: inline-block;
+  background-color: $color--blue;
+  color: white;
+  text-align: center;
+}
+
+.related-content__content {
+  @include rem('padding', 46px 10px 60px 10px);
+}

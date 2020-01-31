@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: content_blockquote
+label: 'Content: Blockquote'
+icon_uuid: null
+description: 'You can add a simple blockquote in the WYSIWYG, but this one supports a citation, and exists on its own (so it can be moved around easily).'
+behavior_plugins: {  }

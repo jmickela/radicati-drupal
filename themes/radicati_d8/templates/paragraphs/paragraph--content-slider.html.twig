@@ -1,0 +1,7 @@
+{% extends "paragraph.html.twig" %}
+
+{% block content %}
+    {% include "@organisms/25-slider/_slider.twig" with {
+      slides: content.field_sldr_slides
+    } only %}
+{% endblock %}

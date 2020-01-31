@@ -1,0 +1,27 @@
+{% include "@molecules/00-card/_card.twig" with {
+  card: {
+    mods: ['detail-listing'],
+    body: {
+      image: {
+        content: content.field_image,
+        link: {
+          href: url
+        },
+      },
+      label: created,
+      title: {
+        content: label,
+        link: {
+          href: url
+        },
+      },
+      content: {
+        content: summary,
+        read_more: {
+          content: "Read More"|trans,
+          href: url
+        }
+      },
+    }
+  }
+} only %}

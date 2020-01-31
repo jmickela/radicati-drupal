@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains radicati_social.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function radicati_social_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the radicati_social module.
+    case 'help.page.radicati_social':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides a simple social sharing block.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function radicati_social_theme() {
+  return [
+    'radicati_social' => [
+      'render element' => 'children',
+    ],
+  ];
+}

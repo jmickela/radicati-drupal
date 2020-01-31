@@ -1,0 +1,49 @@
+{
+  "cardslider__title": "Stories & Projects",
+  "cardslider__description": "Some description",
+  "cardslider__readmore_link": "/",
+  "cardslider__items": [
+    {
+      "title": "Some Title",
+      "teaser": "some teaser",
+      "image": "<img src='http://placekitten.com/257/207' alt='test' />",
+      "labels": [ {"label": "Some Label", "link": "/"}],
+      "link": "/"
+    },
+    {
+      "title": "Some Title",
+      "teaser": "some teaser",
+      "image": "<img src='http://placekitten.com/257/207' alt='test' />",
+      "labels": [ {"label": "Some Label", "link": "/"}],
+      "link": "/"
+    },
+    {
+      "title": "Some Title",
+      "teaser": "some teaser",
+      "image": "<img src='http://placekitten.com/257/207' alt='test' />",
+      "labels": [ {"label": "Some Label", "link": "/"}],
+      "link": "/"
+    },
+    {
+      "title": "Some Title",
+      "teaser": "some teaser",
+      "image": "<img src='http://placekitten.com/257/207' alt='test' />",
+      "labels": [ {"label": "Some Label", "link": "/"}],
+      "link": "/"
+    },
+    {
+      "title": "Some Title",
+      "teaser": "some teaser",
+      "image": "<img src='http://placekitten.com/257/207' alt='test' />",
+      "labels": [ {"label": "Some Label", "link": "/"}],
+      "link": "/"
+    },
+    {
+      "title": "Some Title",
+      "teaser": "some teaser",
+      "image": "<img src='http://placekitten.com/257/207' alt='test' />",
+      "labels": [ {"label": "Some Label", "link": "/"}],
+      "link": "/"
+    }
+  ]
+}

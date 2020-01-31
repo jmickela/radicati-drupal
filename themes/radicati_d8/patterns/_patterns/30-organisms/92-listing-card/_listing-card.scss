@@ -1,0 +1,103 @@
+@import "../../variables";
+
+.card--listing-card {
+  @include rem('height', 227px);
+  @include rem('margin-bottom', 39px);
+  overflow: hidden;
+
+  .card__body {
+    @include rem('height', 120px);
+    @include rem('padding', 18px 8px 15px 18px);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(black, 0.59);
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('height', 100px);
+      @include rem('padding', 14px 15px 30px 15px);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      @include rem('height', 87px);
+      @include rem('padding', 19px 20px 40px 20px);
+    }
+  }
+
+  .card__title {
+    @include rem('font-size', 13px);
+    font-weight: bold;
+    font-stretch: condensed;
+    font-family: $font--gt-america;
+    line-height: 1.4;
+    color: white;
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('font-size', 15px);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      @include rem('font-size', 16px);
+    }
+  }
+
+  .card__content {
+    @include rem('font-size', 12px);
+    @include rem('margin-bottom', 5px);
+  }
+
+  .card__label {
+    @include rem('font-size', 16px);
+    font-family: $font--gt-america;
+    font-weight: bold;
+    font-stretch: condensed;
+
+    &:after {
+      @include rem('top', -1px);
+      @include rem('left', 4px);
+      @include rem('font-size', 12px);
+      content: ">";
+      position: relative;
+
+    }
+  }
+
+  .card__footer {
+    //@include rem('padding', 40px 49px 0 49px);
+
+    // Changes to make card content vertically centered
+    @include rem('padding', 0px 49px 0 49px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: $color--dark-gray;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $color--light-azure;
+
+
+
+    transition: top 400ms ease;
+
+    .card__title {
+      @include rem('margin-bottom', 5px);
+      line-height: 1.2;
+      color: $color--dark-gray;
+    }
+
+    .card__content {
+      line-height: 1.71;
+    }
+  }
+
+  &:hover {
+    .card__footer {
+      top: 0;
+    }
+  }
+}

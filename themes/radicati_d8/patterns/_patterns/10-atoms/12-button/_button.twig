@@ -1,0 +1,9 @@
+{% include "@atoms/10-link/_link.twig" with {
+    link: {
+        base: "button",
+        mods: button.mods|default([]),
+        href: button.href,
+        content: button.content,
+        attributes: button.attributes
+    }
+} only %}

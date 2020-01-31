@@ -1,0 +1,15 @@
+{% set base = "content-button" %}
+{% set mods = ['red', 'content-button'] %}
+
+{% if button.mods %}
+  {% set button = button|merge({ mods: mods|merge(button.mods) }) %}
+{% endif %}
+
+{% include "@atoms/12-button/_button.twig" with {
+  button: {
+    mods: button.mods,
+    href: button.href,
+    content: button.content,
+    attributes: button.attributes
+  }
+} only %}

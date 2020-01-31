@@ -1,0 +1,43 @@
+.card {
+    position: relative;
+}
+
+.card__header, .card__body, .card__footer {
+  position: relative;
+  z-index: 1;
+}
+
+.card__link {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.card__background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  // This is causing issues with images being below everything. See if we don't need it.
+  //z-index: -1;
+
+
+  div, article {
+    height: inherit;
+  }
+
+  img {
+    //position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+
+    object-fit: cover;
+
+  }
+}

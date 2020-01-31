@@ -1,0 +1,27 @@
+{% set base = 'basic-page' %}
+
+<article {{ bem(base, [content_type, view_mode]) }}>
+  {# Below is needed for inline edit forms to work. #}
+  {{ title_prefix }}{{ title_suffix }}
+
+  {% include "@organisms/10-social-share/_social-share.twig" %}
+
+  <div {{ bem('hero-image', [], base) }}>
+    {{ hero_image }}
+  </div>
+
+  <div{{ content_attributes.addClass('article__content') }}>
+    <h2 class="visually-hidden">{{ "Page Media"|trans }}</h2>
+    <div {{ bem('image', [], 'article') }}>
+      {{ content.field_image }}
+    </div>
+
+    {{ content|without('field_image', 'field_hero_image', 'field_case_developments') }}
+  </div>
+
+  <div {{ bem('content-sections', [], base) }}>
+    <h2 class="visually-hidden">{{ "Main Page Content"|trans }}</h2>
+    {{ content_sections }}
+  </div>
+</article>
+

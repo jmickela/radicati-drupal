@@ -1,0 +1,22 @@
+{{ attach_library('radicati_d8/slider') }}
+{% set base = "slideshow" %}
+
+<section {{ bem(base) }} title="{{ "Slideshow"|trans }}">
+  <button class="slick-prev slick-arrow" aria-label="{{ "Previous Slide"|trans }}" type="button">
+    {% include "@atoms/15-icon/_icon.twig" with {
+      icon: {
+        slug: "left-open"
+      }
+    } only %}
+  </button>
+
+  {{ slides }}
+
+  <button class="slick-next slick-arrow" aria-label="{{ "Next Slide"|trans }}" type="button">
+    {% include "@atoms/15-icon/_icon.twig" with {
+      icon: {
+        slug: "right-open"
+      }
+    } only %}
+  </button>
+</section>

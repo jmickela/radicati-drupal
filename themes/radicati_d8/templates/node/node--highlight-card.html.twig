@@ -1,0 +1,20 @@
+{% set attributes = attributes.removeAttribute('role') %}
+
+{% set title = (not node.field_short_title or node.field_short_title.empty) ? label : node.field_short_title.0.value %}
+
+{% include "@organisms/91-highlight-card/_highlight-card.twig" with {
+  promoted: promoted,
+  sticky: sticky,
+  published: published,
+  view_mode: view_mode,
+  content_type: node.bundle|clean_class,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  page: page,
+  url: url,
+  label: title,
+  content: content|without('field_content_sections', 'field_hero_image'),
+  summary: summary,
+  attributes: attributes,
+  created: node.createdtime|format_date('short_month_day_year'),
+} only %}

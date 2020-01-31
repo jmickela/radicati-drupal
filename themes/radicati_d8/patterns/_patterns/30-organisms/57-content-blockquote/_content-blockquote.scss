@@ -1,0 +1,18 @@
+@import "../../variables";
+
+.content-blockquote {
+  @include rem('margin', 44px auto 55px auto);
+  @include rem('max-width', 570px);
+}
+
+.content-blockquote__quote {
+
+}
+
+.content-blockquote__citation {
+  @include rem('font-size', 15px);
+  @include rem('margin-top', -10px);
+  font-style: italic;
+  letter-spacing: 0;
+  color: #1a1a26;
+}

@@ -1,0 +1,16 @@
+{% import "@molecules/60-mega-menu/_mega-menu.twig" as menus %}
+
+{% set mods = menu_item.mods ? menu_item.mods : [] %}
+{% set mods = menu_item.item.is_expanded ? mods|merge(['expanded']) : mods %}
+{% set mods = menu_item.item.is_collapsed ? mods|merge(['collapsed']) : mods %}
+{% set mods = menu_item.item.in_active_trail ? mods|merge(['active-trail']) : mods %}
+
+<li {{ bem('menu-item', mods, menu_item.parent) }}>
+  {{ link(menu_item.item.title, menu_item.item.url) }}
+
+  {% if menu_item.item.content|render|striptags|without('')|trim != '' %}
+    <div {{ bem('dropdown-content', [], base) }}>
+      {{ menu_item.item.content }}
+    </div>
+  {% endif %}
+</li>

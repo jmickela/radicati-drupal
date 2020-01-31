@@ -1,0 +1,105 @@
+@import "../../variables";
+
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+}
+
+h1 {
+  @include rem('font-size', 30px);
+  font-family: $font--gt-america;
+  font-weight: bold;
+  color: $color--blackish;
+  letter-spacing: 0;
+  font-stretch: condensed;
+
+  &.white {
+    color: white;
+  }
+}
+
+// Site message and in listing people variant.
+h1.large {
+  @include rem('font-size', 35px);
+  @include rem('letter-spacing', -0.83px);
+  font-family: $font--century-school;
+  color: white;
+}
+
+// This is an h3 in the designs, but it should be h2
+h2 {
+  @include rem('font-size', 24px);
+  letter-spacing: 0;
+  line-height: 1.19;
+  font-family: $font--gt-america;
+  color: $color--blackish;
+}
+
+// Learn More section.
+h2.white {
+  @include rem('font-size', 30px);
+  font-family: $font--gt-america;
+  color: white;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+// Listing sub-title
+h2.large {
+  @include rem('font-size', 32px);
+  line-height: 1.19;
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
+h2.small {
+  @include rem('font-size', 16px);
+  line-height: 1.5;
+  font-weight: bold;
+  color: white;
+}
+
+h2.dark-gray {
+  @include rem('font-size', 16px);
+  color: $color--dark-gray;
+  line-height: 1.88;
+  font-weight: bold;
+}
+
+// Used in the staff listing component
+h2.staff {
+  @include rem('font-size', 20px);
+  color: black;
+  font-weight: bold;
+  font-stretch: condensed;
+}
+
+// This is an h4 in the designs, but it should be an h3
+h3 {
+  @include rem('font-size', 20px);
+  color: black;
+  font-family: $font--gt-america;
+  font-weight: bold;
+
+  &.white {
+    color: white;
+  }
+}
+
+
+h4 {
+  @include rem('font-size', 18px);
+  color: black;
+  font-family: $font--gt-america;
+}
+
+h5 {
+  @include rem('font-size', 17px);
+  color: black;
+  font-family: $font--gt-america;
+}
+
+h6 {
+  @include rem('font-size', 16px);
+  color: black;
+  font-family: $font--gt-america;
+}

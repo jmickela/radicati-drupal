@@ -1,0 +1,9 @@
+{% include "@molecules/28-menu/_menu.twig" with {
+  menu: {
+    items: items,
+    attributes: attributes,
+    mods: ['primary-navigation', 'dropdown', 'off-canvas'],
+    toggle: true
+  }
+} only %}
+

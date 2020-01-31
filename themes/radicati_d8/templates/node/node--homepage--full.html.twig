@@ -1,0 +1,16 @@
+{% set attributes = attributes.removeAttribute('role') %}
+
+{% include "@templates/05-homepage/_homepage.twig" with {
+  promoted: promoted,
+  sticky: sticky,
+  published: published,
+  view_mode: view_mode,
+  content_type: node.bundle|clean_class,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  page: page,
+  url: url,
+  label: label,
+  content: content,
+  attributes: attributes,
+} only %}

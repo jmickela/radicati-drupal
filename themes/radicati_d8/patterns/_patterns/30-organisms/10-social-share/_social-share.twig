@@ -1,0 +1,57 @@
+{{ attach_library('radicati_d8/social-share') }}
+
+{% set base = 'social-share' %}
+
+<section {{ bem(base) }} aria-label="{{ "Social Sharing"|trans }}">
+
+  {% include "@atoms/17-iconlink/_iconlink.twig" with {
+    icon_link: {
+      mods: ['social-link', 'social-popup'],
+      link_attributes: {
+        target: '_blank',
+        title: 'Share on Twitter'|trans,
+        "aria-label": 'Share on Twitter -- New Window'|trans
+      },
+      slug: 'twitter',
+      href: "http://twitter.com/intent/tweet?url=" ~ url('<current>')|render|url_encode
+    }
+  } only %}
+
+  {% include "@atoms/17-iconlink/_iconlink.twig" with {
+    icon_link: {
+      mods: ['social-link', 'social-popup'],
+      link_attributes: {
+        target: '_blank',
+        title: 'Share on Facebook'|trans,
+        'aria-label': 'Share on Facebook -- New Window'|trans
+      },
+      slug: 'facebook',
+      href: "http://www.facebook.com/sharer.php?u=" ~ url('<current>')|render|url_encode
+    }
+  } only %}
+
+  {% include "@atoms/17-iconlink/_iconlink.twig" with {
+    icon_link: {
+      mods: ['social-link'],
+      link_attributes: {
+        target: '_blank',
+        title: 'Email this link.'|trans,
+        'aria-label': 'Email this link. -- New Window'|trans
+      },
+      slug: 'mail',
+      href: "mailto:?subject=" ~ 'Article on aclunc.org'|url_encode ~ "&body=" ~ url('<current>')|render|url_encode
+    }
+  } only %}
+
+  {% include "@atoms/17-iconlink/_iconlink.twig" with {
+    icon_link: {
+      mods: ['social-link'],
+      link_attributes: {
+        title: 'Print'|trans,
+        'aria-label': 'Print'|trans
+      },
+      slug: 'print',
+      href: "javascript:window.print();"
+    }
+  } only %}
+</section>

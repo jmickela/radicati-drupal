@@ -1,0 +1,48 @@
+@import "../../variables";
+
+.card--slide {
+  width: 100%;
+  //@include rem('height', 300px);
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('height', 432px);
+  }
+
+  .card__background-image {
+    position: inherit;
+
+    @include breakpoint($breakpoint-lg) {
+      position: absolute;
+    }
+  }
+
+  .card__body {
+    position: relative;
+    @include rem('padding', 16px 15px);
+    background: $color--alt-lighter-blue;
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('max-width', 400px);
+      @include rem('padding', 18px 27px);
+      @include rem('top', 57px);
+      @include rem('left', 71px);
+      position: absolute;
+      background: rgba(white, 0.95);
+    }
+  }
+
+  .card__title {
+    @include rem('font-size', 22px);
+    letter-spacing: 0;
+    font-weight: bold;
+    font-family: $font--gt-america;
+    font-stretch: condensed;
+    line-height: 1.19;
+    color: white;
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('font-size', 30px);
+      color: $color--blackish;
+    }
+  }
+}

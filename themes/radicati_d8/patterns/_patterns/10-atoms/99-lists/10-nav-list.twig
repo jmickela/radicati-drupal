@@ -1,0 +1,28 @@
+<ul {{ bem('list', menu_depth ? ["depth-" ~ menu_depth] : null, 'navmenu') }}>
+  {% for item in menu_items  %}
+    {% set mods = (item.menu_modifier ? item.menu_modifier : []) %}
+
+    {% if item.active %}
+      {% set mods = mods|merge(['active']) %}
+    {% elseif item.active_trail %}
+      {% set mods = mods|merge(['active-trail']) %}
+    {% endif %}
+
+    <li {{ bem('menu-item', item.children ? mods|merge(['has-dropdown']) : mods , 'navmenu') }}>
+      <a href='{{item.link}}'>{{item.title}}</a>
+      {% if item.children %}
+        {% if show_caret %}<span class="dropdown-toggle icon icon-down-open"></span>{% endif %}
+        {% include "10-atoms/02-lists/10-nav-list.twig" with {
+          menu_items: item.children,
+          menu_depth: (menu_depth ? menu_depth + 1 : 1),
+          show_caret: show_caret
+        } only %}
+      {% endif %}
+    </li>
+  {% endfor %}
+  {% if menu_extra_content %}
+    <li {{ bem('menu-extra-content', null, 'navmenu') }}>
+      {{ menu_extra_content|raw }}
+    </ul>
+  {% endif %}
+</ul>

@@ -1,0 +1,16 @@
+{% extends "paragraph.html.twig" %}
+
+{% block content %}
+  {% include "@molecules/58-action-button/_action-button.twig" with {
+    action_button: {
+      mods: ['image-button'],
+      link: {
+        href: paragraph.field_link.0.url
+      },
+      title: {
+        content: content.field_label
+      },
+      image: content.field_background
+    }
+  } only %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{{ site_message }}
+
+<div class="oc-overlay"></div>
+
+<div class="layout-container">
+  {% include "@organisms/30-header/_header.twig" with {
+    regions: {
+      header_branding: header_branding,
+      secondary_navigation: secondary_navigation,
+      primary_navigation: primary_navigation,
+      theme_dir: theme_dir
+    }
+  } only %}
+
+
+  {% if system_help|render|striptags != "" %}
+    <div class="container">
+      <div class="col--12">
+        {{ system_help }}
+      </div>
+    </div>
+  {% endif %}
+
+
+  <main>
+    <a id="main-content" tabindex="-1" aria-label="{{ "Main Content"|trans }}"></a>
+
+    {% block page_content %}
+      <div id="page-content">
+        <div class="container">
+          <div class="row">
+            <div class="col--12">
+              {{ content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+
+    {% block post_content %}
+      {{ post_content }}
+    {% endblock %}
+  </main>
+
+  {% if pre_footer_one|render|striptags|trim != '' or pre_footer_two|render|striptags|trim != '' %}
+    <div id="pre-footer-wrapper">
+      {% if pre_footer_one|render|striptags|trim != '' %}
+        {{ pre_footer_one }}
+      {% endif %}
+
+      {# When rendering a form Drupal uses the lazy_builder, which prevents the |render|striptags|trim trick from working. #}
+      {{ pre_footer_two }}
+    </div>
+  {% endif %}
+
+  {% include "@organisms/40-footer/_footer.twig" with {
+    footer_branding: footer_branding,
+    footer: footer,
+    copyright: copyright
+  } only %}
+
+  {% include '@organisms/15-off-canvas/_off-canvas.twig' with {
+    off_canvas: off_canvas,
+    base_path: base_path
+  } only %}
+</div>

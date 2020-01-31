@@ -1,0 +1,18 @@
+{% include "@molecules/50-cards/10-card1/00-card1.twig" with {
+  card: {
+    mods: ['listing-item'],
+    heading_level: 4,
+    title: label,
+    title_prefix: title_prefix,
+    title_suffix: title_suffix,
+    link: url,
+    tags: content.field_resource_type,
+    content: content|without('field_image', 'field_category', 'field_resource_type'),
+    more_link_text: "Read More <i class='icon icon-right-open'></i>",
+    media: {
+      content: content.field_image
+    }
+  },
+  content_attributes: content_attributes,
+  attributes: attributes
+} only %}

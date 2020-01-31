@@ -1,0 +1,11 @@
+{% set base = 'content-image' %}
+
+<div {{ bem(base, content_image.mods) }}>
+  {{ content_image.image }}
+
+  {% if content_image.caption %}
+    <div {{ bem('caption', [], base) }}>
+      {{ content_image.caption }}
+    </div>
+  {% endif %}
+</div>

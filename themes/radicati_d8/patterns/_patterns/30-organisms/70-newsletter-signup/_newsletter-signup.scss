@@ -1,0 +1,121 @@
+@import "../../variables";
+
+.block-signup-block {
+  height: 100%;
+}
+
+.newsletter-signup {
+  @include rem('padding', 10px);
+  background-color: $color--blue;
+  height: 100%;
+
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('padding', 35px 50px 58px 50px);
+  }
+}
+
+.newsletter-signup__inner {
+  position: relative;
+  margin: 15px auto 0 auto;
+
+  @include breakpoint($breakpoint-lg) {
+    display: inline-block;
+    margin: 0;
+  }
+}
+
+h2.newsletter-signup__title {
+  @include rem('margin-bottom', 10px);
+  text-transform: uppercase;
+  line-height: 0.75;
+}
+
+.newsletter-signup__subtitle {
+  line-height: 1.1;
+  font-family: $font--gt-america;
+  font-stretch: condensed;
+  font-weight: normal;
+}
+
+.newsletter-signup__title,
+.newsletter-signup__subtitle {
+  text-align: center;
+
+
+  @include breakpoint($breakpoint-lg) {
+    text-align: left;
+  }
+}
+
+.newsletter-signup__form-wrapper {
+  @include rem('margin-top', 39px);
+}
+
+
+// Form specific styles
+form.newsletter-signup {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint($breakpoint-lg) {
+    flex-direction: row;
+  }
+
+  div.form-item {
+    @include rem('margin', 0 10px 20px 0);
+    padding: 0;
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('margin', 0 10px 0 0);
+    }
+  }
+
+  input[type=email], input[type=text] {
+    @include rem('padding', 12px 17px 12px 17px);
+    border: 2px solid $color--light-orange;
+    margin: 0 10px 0 0 !important;
+  }
+
+  input[type=submit] {
+    @extend .button;
+    @extend .button--orange;
+
+    width: 100%;
+
+    letter-spacing: 0;
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('flex', 0 0 120px);
+
+      // display: inline-block doesn't seem in include widths coming from the flex style.
+      @include rem('width', 120px);
+      @include rem('padding-top', 11px);
+    }
+  }
+}
+
+// SOCIAL MEDIA LINKS!!
+
+.newsletter-signup__social-links {
+  @include rem('margin', 20px 0);
+  color: white;
+  text-align: center;
+
+  .icon {
+    @include rem('font-size', 16px);
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    margin: 0;
+    text-align: left;
+
+    .icon {
+      @include rem('font-size', 24px);
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@import "../../variables";
+
+.card--footer-highlight {
+  @include rem('min-height', 252px);
+
+
+  .card__body {
+    padding: 5vw;
+
+    @include breakpoint($breakpoint-md) {
+      @include rem('padding', 20px 15px 15px 20px);
+    }
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('padding', 35px 33px 30px 40px);
+      @include rem('min-height', 325px);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      @include rem('padding', 44.5px 33px 30px 155px);
+      @include rem('min-height', 252px);
+    }
+  }
+
+  .card__title {
+    @extend h2.white;
+    @include rem('margin-bottom', 1px);
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: $color--onyx-red;
+
+    line-height: 1;
+    @include rem('padding-bottom', 6px);
+  }
+
+  .card__content {
+    @include rem('margin-bottom', 30px);
+
+    > div {
+      @include rem('padding', 6px 0 4px 0);
+      display: inline;
+      background-color: $color--onyx-red;
+    }
+
+    p {
+      @include rem('font-size', 24px);
+      line-height: 1.43;
+      letter-spacing: 0;
+      font-family: $font--gt-america;
+      font-stretch: condensed;
+      display: inline;
+      color: white;
+    }
+  }
+
+  .button {
+    @include rem('padding', 14px 28px);
+  }
+}

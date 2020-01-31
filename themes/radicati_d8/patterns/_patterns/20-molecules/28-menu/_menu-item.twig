@@ -1,0 +1,21 @@
+{% import "@molecules/28-menu/_menu.twig" as menus %}
+
+{% set mods = [] %}
+{% set mods = menu_item.item.is_expanded ? mods|merge(['expanded']) : mods %}
+{% set mods = menu_item.item.is_collapsed ? mods|merge(['collapsed']) : mods %}
+{% set mods = menu_item.item.in_active_trail ? mods|merge(['active-trail']) : mods %}
+
+<li {{ bem('menu-item', mods, menu_item.parent) }}>
+  {{ link(menu_item.item.title, menu_item.item.url) }}
+  {% if menu_item.item.below %}
+    {% if menu_item.toggle %}
+      <button class="dropdown-toggle level-{{menu_item.menu_level|number_format + 1}}">
+        <span class="toggle-text visually-hidden">Show submenu</span>
+        <i class="icon icon-down-dir" aria-hidden="true"></i>
+      </button>
+    {% endif %}
+
+    {% set menu_level = menu_item.menu_level|number_format + 1 %}
+    {{ menus.menu_links(menu_item.item.below, menu_item.attributes, menu_level, [], menu_item.toggle) }}
+  {% endif %}
+</li>

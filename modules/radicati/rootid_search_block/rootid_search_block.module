@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Contains rootid_search_block.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rootid_search_block_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rootid_search_block module.
+    case 'help.page.rootid_search_block':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A set of simple search blocks.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function rootid_search_block_theme() {
+  return [
+    'rootid_dropdown_search_block' => [
+      'render element' => 'children',
+      'variables' => [
+        'form' => NULL,
+      ],
+    ],
+    'rootid_inline_search_block' => [
+      'render element' => 'children',
+      'variables' => [
+        'form' => NULL,
+      ],
+    ],
+  ];
+}

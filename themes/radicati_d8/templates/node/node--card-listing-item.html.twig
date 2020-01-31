@@ -1,0 +1,17 @@
+{% set attributes = attributes.removeAttribute('role') %}
+
+{% include "@organisms/92-listing-card/_listing-card.twig" with {
+  promoted: promoted,
+  sticky: sticky,
+  published: published,
+  view_mode: view_mode,
+  content_type: node.bundle|clean_class,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  page: page,
+  url: url,
+  label: label,
+  content: content,
+  summary: summary,
+  attributes: attributes,
+} only %}

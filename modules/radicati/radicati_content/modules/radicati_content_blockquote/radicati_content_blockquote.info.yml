@@ -1,0 +1,7 @@
+name: 'Radicati: Content Blockquote'
+description: 'Adds a blockquote to the site content paragraphs.'
+type: module
+core: 8.x
+dependencies:
+  - paragraphs
+version: 8.x-1.0

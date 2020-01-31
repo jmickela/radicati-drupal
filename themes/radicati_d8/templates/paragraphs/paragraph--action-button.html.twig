@@ -1,0 +1,23 @@
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]
+%}
+{% block paragraph %}
+<div{{ attributes.addClass(classes) }}>
+  {% include "@molecules/58-action-button/_action-button.twig" with {
+    action_button: {
+      link: {
+        href: paragraph.field_link.0.url
+      },
+      title: {
+        content: content.field_label
+      },
+      image: content.field_background
+    }
+  } only %}
+</div>
+{% endblock %}

@@ -1,0 +1,162 @@
+@import "../../variables";
+
+#listing-content {
+  padding-top: 110px;
+  margin-top: -110px;
+}
+
+.listing-page {
+  .field--name-field-hero-image {
+    @include rem('margin-bottom', 23px);
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.listing-page__title {
+  // @include rem('margin-bottom', 7px);
+  @include rem('margin', -7px 0 19px);
+  text-transform: uppercase;
+}
+
+.listing-page__sub-title {
+  @include rem('font-size', 32px);
+  @include rem('margin-bottom', 33px);
+  line-height: 1.19;
+  color: black;
+  font-family: $font--gt-america;
+  font-stretch: condensed;
+  font-weight: normal;
+}
+
+.listing-page__content {
+  color: $color--blackish;
+  @include rem('font-size', 18px);
+  @include rem('letter-spacing', 0.1px);
+  line-height: 1.67;
+  // @include rem('margin-bottom', 15px);
+  @include rem('margin-bottom', 45px);
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include rem('margin-bottom', 20px);
+  }
+
+  // remove the top margin from the top-most content item and the bottom margin from the bottom-most, while still leaving margins between the items
+  .field__items {
+    >div:nth-of-type(1) {
+      .paragraph {
+        >div:nth-of-type(1) {
+          margin-top: 0;
+        }
+      }
+    }
+
+    >div:last-of-type() {
+      .paragraph {
+        >div:last-of-type() {
+          margin-bottom: 0;
+
+          div {
+            >p:last-of-type {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+form div.form-item-field-issues-target-id {
+  @include rem('margin-bottom', 30px);
+}
+
+.page-node-type-listing-page #page-content #block-aclunc-system-main .view .view-filters form.views-exposed-form {
+  margin-top: 0;
+}
+
+#page-content {
+  #block-aclunc-system-main {
+    .view.view-radicati-listing-page-driver,
+    .view.view-aclunc-custom-listings {
+      .view-filters {
+        form.views-exposed-form {
+          margin-top: 0;
+
+          .form--inline .form-type-select.form-item {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.view-radicati-listing-page-driver,
+.view-aclunc-custom-listings {
+
+  .form-type-select {
+
+    label {
+      visibility: hidden;
+      position: absolute;
+
+      // color: black;
+      // font-family: $font--gt-america;
+      // @include rem('font-size', 20px);
+      // font-stretch: condensed;
+      // font-weight: bold;
+      // text-align: center;
+      // text-transform: uppercase;
+
+      // background-color: white;
+      // @include rem('height', 53px);
+
+      // position: relative;
+      // line-height: normal;
+      // top: 1em;
+      // display: table;
+      // vertical-align: middle;
+      // @include rem('padding', 5px);
+      // border: 1px dashed black;
+    }
+
+    select {
+      $svg-color: $color--light-orange;
+      @import '00-base/mixins/inline-svg/_!_svgs/_fontawesome-chevron-down--solid.scss';
+      background-image: inline-svg($svg-chevron-down--solid), linear-gradient(to bottom, white 0%, white 100%);
+      // background-image: linear-gradient(to bottom, white 0%, white 100%);
+      // background-position: 0;
+      // background-repeat: repeat;
+
+      @include rem('height', 63px);
+      @include rem('max-width', 400px);
+      margin: 0 auto;
+
+      border: solid 1px $color--light-gray;
+      color: black;
+      font-family: $font--gt-america;
+      @include rem('font-size', 20px);
+      font-stretch: condensed;
+      font-weight: bold;
+      text-align: center;
+      // text-transform: uppercase;
+
+      // position: relative;
+      // @include fontello('\e801', after);
+
+      option {
+        font-weight: normal;
+      }
+    }
+  }
+}

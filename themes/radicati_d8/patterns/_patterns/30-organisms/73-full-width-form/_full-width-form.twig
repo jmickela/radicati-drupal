@@ -1,0 +1,11 @@
+{% set base = 'full-width-form' %}
+
+<section {{ bem(base) }} role="region" aria-label="{{ "Form"|trans }}">
+  <div class="container">
+    <div class="row">
+      <div class="col--12">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</section>

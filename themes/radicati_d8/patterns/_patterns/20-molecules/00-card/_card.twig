@@ -1,0 +1,133 @@
+{% import _self as card_output %}
+
+{% set variants = card.variants|default([]) %}
+{% set base = 'card' %}
+
+{#
+  card.header.image...
+
+  card.header.title
+
+  card.body.title
+
+  card.footer.whatever...
+
+
+  card.link : whole card is a link
+  card.header.link: section is a link
+  card.header.title.link: title is a link
+
+
+
+
+
+
+#}
+
+<{{ card.is_article ? "article" : "div" }} {{ bem(base, card.mods|default([]), card.parent|default('')) }}>
+  {% if card.link and card.link.href != null %}
+    <a href='{{ card.link.href }}' {{ bem('link', [], base) }} {{ expand(card.link.attributes)}}>
+  {% endif %}
+
+  <div {{ bem('inner', [], base) }}>
+    {% if card.background_image and (card.background_image.content != null or card.background_image.overlay != null) %}
+      <div {{ bem('background-image', [], base) }}>
+          {{ card.background_image.content|raw }}
+      </div>
+    {% endif %}
+
+    {# In case we need to override the media block, you can't put a block in a loop, or at least you shouldn't #}
+    {% block media %}{% endblock %}
+
+    {% if card.header %}
+      <div {{ bem('header', [], base) }}>{{ card_output.card_output_items(card.header, base) }}</div>
+    {% endif %}
+
+    {% if card.body %}
+      <div {{ bem('body', [], base) }}>{{ card_output.card_output_items(card.body, base) }}</div>
+    {% endif %}
+
+    {% if card.footer %}
+      <div {{ bem('footer', [], base) }}>{{ card_output.card_output_items(card.footer, base) }}</div>
+    {% endif %}
+  </div>
+
+  {% if card.link and card.link.href != null %}
+    </a>
+  {% endif %}
+
+  {% block card_extra_content %}
+  {% endblock card_extra_content %}
+
+</{{ card.is_article ? "article" : "div" }}>
+
+
+
+
+
+
+{% macro card_output_items(items, base) %}
+  {% if items.link %}
+    <a href='{{ value.link.href }}' {{ bem('link', [], base) }} {{ expand(value.link.attributes)}}>
+  {% endif %}
+
+  {% for key, value in items %}
+    {% if key ==  'title' %}
+      {% if value.link %}
+        <a href='{{ value.link.href }}' {{ bem('link', [], base) }} {{ expand(value.link.attributes)}}>
+      {% endif %}
+
+      {% include '@atoms/05-heading/_heading.twig' with {
+        heading: {
+          base: 'title',
+          mods: value.mods,
+          parent: base,
+          content: value.content,
+          level: value.heading_level|default(2)
+        }
+      } only %}
+
+      {% if value.link %}
+        </a>
+      {% endif %}
+    {% elseif key == 'content' %}
+      <div {{ bem('content', [], base) }}>
+        {{ value.content|raw }}
+        {% if value.read_more %}
+          <a {{ bem('read-more', [], base) }} href="{{ value.read_more.href }}">{{ value.read_more.content }}</a>
+        {% endif %}
+
+        {#  In case you need to add extra text after the content #}
+        {% if value.append %}
+          {{ value.append|raw }}
+        {% endif %}
+      </div>
+    {% elseif key == 'button' %}
+      {% include '@atoms/12-button/_button.twig' with {
+        button: value
+      } only %}
+    {% elseif key =='image' %}
+      {% if value.link %}
+        <a href='{{ value.link.href }}' {{ bem('link', [], base) }} {{ expand(value.link.attributes)}}>
+      {% endif %}
+      {% if value.content != null %}
+        <div {{ bem('image', [], base) }}>
+          {{ value.content }}
+        </div>
+      {% endif %}
+      {% if value.link %}
+        </a>
+      {% endif %}
+    {% elseif key == 'label' %}
+      {#  A label is similar to a tag, but doesn't have a link. It can be any textual data that gives #}
+      {#  more context to what the user is reading (a date, a short description...) #}
+      <div {{ bem('label', [], base) }}>{{ value }}</div>
+    {% else %}
+      {# {{ key }} #}
+    {% endif %}
+  {% endfor %}
+
+  {% if items.link %}
+    </a>
+  {% endif %}
+{% endmacro %}

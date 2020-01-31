@@ -1,0 +1,43 @@
+{% set base = 'need-to-know' %}
+
+<section {{ bem(base) }}>
+  <div class="row">
+    <div class="col-md-8 col--12">
+      <h2 {{ bem('title', [],  base) }}>{{ title }}</h2>
+
+      <div {{ bem('accordions', [], base) }}>
+        {{ accordion_items }}
+      </div>
+    </div>
+
+    <div class="col-md-4 col--12">
+      <h2 {{ bem('title', [], base) }}>{{ related_content_title }}</h2>
+
+      <div {{ bem('links', [], base) }}>
+
+
+        {% for item in related_content %}
+          <article {{ bem('related', [], base) }}>
+            <h3 {{ bem('related-title', [], base) }}>
+              {% include "@atoms/10-link/_link.twig" with {
+                link: {
+                  href: item.url,
+                  content: item.value.title
+                }
+              } only %}
+            </h3>
+
+            {% include "@atoms/10-link/_link.twig" with {
+              link: {
+                classes: ['read-more'],
+                href: item.url,
+                content: "Read More"|trans
+              }
+            } only %}
+          </article>
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

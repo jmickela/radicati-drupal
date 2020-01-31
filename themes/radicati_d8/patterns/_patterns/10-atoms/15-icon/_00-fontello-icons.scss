@@ -1,0 +1,198 @@
+@import 'fontello-variables';
+
+
+// This is just a demo of the decimal -> hex version of the fontello mixin to confirm it's working
+.icon-test {
+   // test values
+   // 59399 -> E807 (aka the home hex)
+   // 61594 -> F09A (aka the facebook hex)
+   @include dec-fontello(61594);
+}
+
+/**
+ * This automatically generates an icon for each glyph
+ * in the fontello config.json
+ *
+ * Note that you have to npm install and run the `gulp
+ * json` task prior to compiling your css, or else the
+ * fontello-variables.scss file won't be generated and
+ * the gulp css task will crash and burn
+ */
+
+@each $icon in $fontello-glyphs {
+   @if map-has-key($icon, 'css') and map-has-key($icon, 'code') {
+      $name: map-get($icon, 'css');
+      $code: map-get($icon, 'code');
+
+      .icon-#{$name} {
+         @include dec-fontello($code);
+      }
+   }
+}
+
+
+// Let's get a little fancy and set up an up-down using before and after!
+$code-up: '';
+$code-down: '';
+
+// find the necessary glyph codes from the config.json
+@each $icon in $fontello-glyphs {
+   @if map-has-key($icon, 'css') and map-has-key($icon, 'code') {
+      $name: map-get($icon, 'css');
+      $code: map-get($icon, 'code');
+
+      @if ($name=='down-open') {
+         $code-down: map-get($icon, 'code');
+      }
+
+      @if ($name=='up-open') {
+         $code-up: map-get($icon, 'code');
+      }
+   }
+}
+
+
+// first check to be sure we got the necessary codes!
+@if(type-of($code-down) =='number' and type-of($code-up) == 'number') {
+   .icon-up-down {
+      @include dec-fontello($code-up, before);
+      @include dec-fontello($code-down, after);
+      height: 3ex;
+      position: relative;
+      width: 1em;
+
+      &::before,
+      &::after {
+         font-size: .8em;
+         left: 50%;
+         position: absolute;
+         transform: translateX(-50%);
+      }
+
+      &::before {
+         top: 0;
+      }
+
+      &::after {
+         bottom: 0;
+      }
+   }
+}
+
+
+
+// .icon-right-dir {
+//    @include fontello('\e80a');
+// }
+
+// .icon-globe {
+//    @include fontello('\e800');
+// }
+
+// .icon-down-open {
+//    @include fontello('\e801');
+// }
+
+// .icon-right-open {
+//    @include fontello('\e802');
+// }
+
+// .icon-up-open {
+//    @include fontello('\e803');
+// }
+
+// .icon-left-open {
+//    @include fontello('\e804');
+// }
+
+// .icon-star {
+//    @include fontello('\e805');
+// }
+
+// .icon-mail {
+//    @include fontello('\e806');
+// }
+
+// .icon-twitter {
+//    @include fontello('\f099');
+// }
+
+// .icon-facebook {
+//    @include fontello('\f09a');
+// }
+
+// .icon-facebook-alt {
+//    @include fontello('\f230');
+// }
+
+// .icon-medium {
+//    @include fontello('\f23a');
+// }
+
+// .icon-rss {
+//    @include fontello('\f09e');
+// }
+
+// .icon-linkedin {
+//    @include fontello('\f0e1');
+// }
+
+// .icon-youtube-play {
+//    @include fontello('\f16a');
+// }
+
+// .icon-instagram {
+//    @include fontello('\f16d');
+// }
+
+// .icon-sharethis {
+//    @include fontello('\F1E0');
+// }
+
+// .icon-home {
+//    @include fontello('\E807');
+// }
+
+// .icon-search {
+//    @include fontello('\E808');
+// }
+
+// .icon-close {
+//    @include fontello('\E809');
+// }
+
+// .icon-marker {
+//    @include fontello('\E80A');
+// }
+
+// .icon-print {
+//    @include fontello('\e80b');
+// }
+
+// .icon-reddit-alien {
+//    @include fontello('\f281');
+// }
+
+// .icon-arrow-down {
+//    @include fontello('\E80D');
+// }
+
+// .icon-arrow-left {
+//    @include fontello('\E80E');
+// }
+
+// .icon-arrow-right {
+//    @include fontello('\E80F');
+// }
+
+// .icon-arrow-up {
+//    @include fontello('\E810');
+// }
+
+// TODO: Get this working, Fontello only has the dec number for the icon in the config file, but we need the hex value
+// Due to SCSS trickery, it seems to be impossible to do something like "\#{$code}", we have to have an explicit value.
+// There must be a way around this.
+
+// @function char-from-code($iso-char) {
+//    @return unquote('\"\\#{$iso-char}\"');
+// }

@@ -1,0 +1,9 @@
+{% extends "paragraph.html.twig" %}
+
+{% block content %}
+    {% include "@organisms/26-slide/_slide.twig" with {
+      title: content.field_sld_title,
+      background: content.field_sld_image,
+      url: paragraph.field_sld_link.0.url
+    } only %}
+{% endblock %}

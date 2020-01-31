@@ -1,0 +1,24 @@
+{% set base = 'case-developments' %}
+<section {{ bem(base) }}  aria-label="{{ 'Case Developments'|trans }}">
+  <div class="container">
+    <div class="row">
+      <div class="col--12">
+        {% include '@atoms/05-heading/_heading.twig' with {
+          heading: {
+            parent: base,
+            base: 'title',
+            level: 2,
+            content: label
+          }
+        } only %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col--12">
+        {% for item in items %}
+          {{ item.content }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

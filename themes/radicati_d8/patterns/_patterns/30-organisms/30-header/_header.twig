@@ -1,0 +1,23 @@
+<header id="site-header"  {{ bem('site-header') }}>
+  <div {{ bem('inner', [], 'site-header', ['affix']) }}>
+
+    {% include "@atoms/70-hamburger/_hamburger.twig" with {
+      hamburger: {
+        style: 1
+      }
+    } only %}
+
+    <div class="header-branding">
+      {{ regions.header_branding }}
+
+      <a href="/" class="site-logo-affix" title="{{ "ACLU of Northern California"|trans }}">
+        {% include regions.theme_dir ~ "/dist/images/logo__mobile--one-line.svg" %}
+      </a>
+    </div>
+
+    <div class="header-navigation">
+      {{ regions.secondary_navigation }}
+      {{ regions.primary_navigation }}
+    </div>
+  </div>
+</header>

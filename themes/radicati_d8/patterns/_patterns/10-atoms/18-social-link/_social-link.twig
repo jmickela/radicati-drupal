@@ -1,0 +1,36 @@
+    {% if "facebook" in sociallink.href %}
+        {% set slug = "facebook-alt" %}
+    {% elseif "instagram" in sociallink.href %}
+        {% set slug = "instagram" %}
+    {% elseif "medium.com" in sociallink.href %}
+      {% set slug = "medium" %}
+    {% elseif "mailto:" in sociallink.href %}
+        {% set slug = "envelope" %}
+    {% elseif "sharethis" in sociallink.href %}
+        {% set slug = "sharethis" %}
+    {% elseif "twitter" in sociallink.href %}
+        {% set slug = "twitter" %}
+    {% elseif "yelp" in sociallink.href %}
+        {% set slug = "yelp" %}
+    {% elseif "youtube" in sociallink.href %}
+        {% set slug = "youtube" %}
+    {% elseif "linkedin" in sociallink.href %}
+        {% set slug = "linkedin" %}
+    {% elseif "/feed" in sociallink.href or "rss" in sociallink.href %}
+        {% set slug = "rss" %}
+    {% else %}
+        {% set slug = 'globe' %}
+    {% endif %}
+
+    {% include "@atoms/17-iconlink/_iconlink.twig" with {
+        icon_link: {
+            base: 'sociallink',
+            slug: slug,
+            href: sociallink.href,
+            title: sociallink.title,
+            link_attributes: {
+                target: "_blank",
+                "aria-label": sociallink.title
+            }
+        }
+    } only %}

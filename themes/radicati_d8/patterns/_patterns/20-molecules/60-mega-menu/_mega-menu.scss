@@ -1,0 +1,139 @@
+@import "variables";
+// I can do this because of the includePaths option I set for sass in the css task in the gulpfile :)
+
+ul.menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  width: 100%;
+
+  a {
+    display: inline-block;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+
+
+
+// nav.menu--footer {
+//   background-color: $color--pale-grey;
+
+//   ul.navmenu__list {
+//     background-color: $color--pale-grey;
+//     display: flex;
+//     @include rem('line-height', $navmenu-line-height);
+//     list-style-type: none;
+//     padding: 0;
+//     width: 100%;
+
+//     li {
+//       flex: 1 0 auto;
+//       // color: black;
+//       @include rem('padding', 5px);
+
+//       &.open {
+//         >a {
+//           @include rem('margin-bottom', 0);
+//         }
+//       }
+
+//       // > a:hover {
+//       //   background-color: darkgray;
+//       //   color: white;
+//       // }
+
+//       a {
+//         display: block;
+//         flex: 1 1 calc(100% - 50px);
+//         @include rem('margin', -5px);
+//         @include rem('padding', 5px);
+
+//         &:hover {
+//           background-color: darkgray;
+//           color: white;
+//         }
+//       }
+//     }
+//   }
+
+//   // the top-level ul is styled differently from the dropdowns
+//   >ul.navmenu__list {
+//     // position: relative;
+//     width: auto;
+
+//     >li {
+//       flex: 0 0 auto;
+//       @include rem('padding', 5px 10px);
+
+//       >a {
+//         @include rem('margin', -5px -10px);
+//         @include rem('padding', 5px 10px);
+//       }
+
+//       &.open {
+//         >a {
+//           @include rem('margin-bottom', 0);
+//         }
+//       }
+//     }
+//   }
+
+//   .navmenu__menu-item--has-dropdown {
+
+//     .dropdown-toggle {
+//       align-items: center;
+//       display: flex;
+//       flex: 0 0 auto;
+//       font-size: inherit;
+//       justify-content: center;
+//       margin: 0;
+//     }
+
+//     li {
+//       text-align: center;
+//     }
+//   }
+// }
+
+// .navmenu:not(.navmenu--click-to-toggle):not(.navmenu--expanding) {
+
+//   >ul {
+
+//     >li {
+//       display: flex;
+//     }
+//   }
+
+//   .navmenu__menu-item--has-dropdown {
+//     // position: relative;
+
+//     &:hover {
+//       >.navmenu__list {
+//         display: flex;
+//       }
+//     }
+
+//     >.navmenu__list {
+//       display: none;
+//       left: 0;
+//       position: absolute;
+//       top: 100%;
+//       z-index: 100;
+//     }
+//   }
+// }
+
+// .navmenu.navmenu--show-carets {
+//   .navmenu__menu-item--has-dropdown {
+//     >a {
+//       @include rem('margin-right', 0);
+//     }
+//   }
+// }

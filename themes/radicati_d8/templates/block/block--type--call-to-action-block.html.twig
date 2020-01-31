@@ -1,0 +1,16 @@
+{#{% set button = {#}
+{#  link: content.field_button.0['#url'],#}
+{#  label: content.field_button.0['#title']#}
+{#} %}#}
+
+{#{% set cta = {#}
+{#  title: label,#}
+{#  content: content.field_sub_title,#}
+{#  button: button,#}
+{#  image: content.field_background_image#}
+{#} %}#}
+
+{#{% include "@organisms/99-widgets/20-cta/10-cta.twig" with {#}
+{#  attributes: attributes,#}
+{#  cta: cta#}
+{#} only %}#}

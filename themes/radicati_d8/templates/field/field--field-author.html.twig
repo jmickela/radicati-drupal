@@ -1,0 +1,7 @@
+{% for key, item in items %}
+  <span{{ attributes }}>
+    {% include "@molecules/81-legislation-author/_legislation-author.twig" with {
+      item: item,
+    } only %}
+  </span>
+{% endfor %}

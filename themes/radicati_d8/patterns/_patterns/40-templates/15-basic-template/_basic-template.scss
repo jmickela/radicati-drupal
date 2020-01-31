@@ -1,0 +1,114 @@
+@import "../../variables";
+
+.basic-template .field--name-field-hero-image {
+  @include rem('margin-bottom', 25px);
+
+  img {
+    display: block;
+  }
+}
+
+.basic-template__content-row {
+  @include rem('margin-bottom', 40px);
+  margin-left: auto;
+  margin-right: auto;
+  @include rem('max-width', 850px);
+}
+
+
+.basic-template__title {
+  @include rem('margin', -7px 0 19px 0);
+  // text-transform: uppercase;
+  text-align: center;
+}
+
+.basic-template__date {
+  @include rem('margin-bottom', 10px);
+  text-align: center;
+}
+
+.basic-template__status {
+  @include rem('margin-bottom', 15px);
+  @include rem('margin-top', -5px);
+  text-align: center;
+
+  .case-status__label {
+    font-size: inherit;
+  }
+}
+
+.basic-template__content {
+  font-family: $font--roboto;
+  @include rem('font-size', 18px);
+  @include rem('letter-spacing', 0.3px);
+  line-height: 1.69;
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include rem('margin-bottom', 20px);
+  }
+
+  .field--name-field-issues {
+    .field__label {
+      display: inline-block;
+
+      &::after {
+        content: ':';
+      }
+    }
+
+    .field__items {
+      display: inline-block;
+
+      div {
+        display: inline-block;
+
+        &:not(:last-of-type) {
+          &::after {
+            content: ',';
+          }
+        }
+      }
+    }
+  }
+
+  .field--name-field-file {
+    .file {
+      display: inline;
+    }
+  }
+}
+
+.basic-template__image {
+  @include rem('margin', 0 auto 51px);
+  padding: 0;
+  text-align: center;
+
+  @include breakpoint($breakpoint-md) {
+    @include rem('margin-left', 87px);
+    margin-right: 0;
+    float: right;
+    text-align: right;
+  }
+
+  .field--name-field-image {
+    display: inline-block;
+    width: 100%;
+
+    img {
+      @include rem('max-width', 373px);
+      width: unset;
+    }
+  }
+}
+
+// Special styles for basic pages
+.basic-template--basic-page {
+  .basic-template__title {
+    text-transform: uppercase;
+    text-align: left;
+  }
+}

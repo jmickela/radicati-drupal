@@ -1,0 +1,58 @@
+{{ attach_library('radicati_d8/listing-page') }}
+{% set base = 'listing-page' %}
+
+<article {{ bem(base) }}>
+  <div class="row">
+    <div class="col--12">
+      {{ content.field_hero_image }}
+    </div>
+  </div>
+
+  <div {{ bem('content-row', [], base, ['row']) }}>
+    <div class="col--12">
+      {% include "@atoms/05-heading/_heading.twig" with {
+        heading: {
+          parent: base,
+          base: 'title',
+          level: 1,
+          content: title
+        }
+      } only %}
+
+{# {{ kint(content.field_sub_title) }}
+  {{ dump(content.field_sub_title['#object']) }} #}
+      {% if content.field_sub_title['#object'] %}
+        {% include "@atoms/05-heading/_heading.twig" with {
+          heading: {
+            parent: base,
+            base: 'sub-title',
+            level: 2,
+            content: content.field_sub_title
+          }
+        } only %}
+      {% endif %}
+
+      <div {{ bem('content', [], base) }}>
+        {{ content|without('field_hero_image', 'field_sub_title', 'field_listing_settings', 'field_view') }}
+      </div>
+    </div>
+  </div>
+
+  {% if content.field_listing_settings %}
+    <div class="row">
+      <div class="col--12">
+        <div id="pager-content">
+          {{ content.field_listing_settings }}
+        </div>
+      </div>
+    </div>
+  {% elseif content.field_view %}
+    <div class="row">
+      <div class="col--12">
+        <div id="pager-content">
+          {{ content.field_view }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</article>

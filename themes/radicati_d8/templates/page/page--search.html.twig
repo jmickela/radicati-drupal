@@ -1,0 +1,44 @@
+{% include "@pages/00-default/_page.twig" with {
+  site_message: page.site_message,
+  header_branding: page.header_branding,
+  primary_navigation: page.primary_navigation,
+  secondary_navigation: page.secondary_navigation,
+  off_canvas: page.off_canvas,
+  system_help: page.system_help,
+  content: page.content,
+  post_content: page.post_content,
+  pre_footer_one: page.pre_footer_one,
+  pre_footer_two: page.pre_footer_two,
+  footer_branding: page.footer_branding,
+  footer: page.footer,
+  copyright: page.copyright,
+  theme_dir: base_path ~ directory,
+  search_terms: search_terms,
+  base_path: base_path
+} only %}
+
+{# {% block page_content %}
+  {% set base = "search-page" %}
+
+	<div id="page-content">
+		<div class="container">
+			<div class="row">
+				<div class="col--12">
+          {% if search_terms %}
+            <div {{ bem('terms', [], base) }}>
+              <div {{ bem('terms--label', [], base) }}>{{ "Results for: "|trans }}</div>
+              <div {{ bem('terms--value', [], base) }}>{{ search_terms|striptags }}</div>
+            </div>
+          {% endif %}
+					{{ content }}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+{% endembed %} #}
+
+
+

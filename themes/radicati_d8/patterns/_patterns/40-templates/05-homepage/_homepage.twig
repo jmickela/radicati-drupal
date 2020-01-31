@@ -1,0 +1,23 @@
+{% set base = 'homepage' %}
+
+<article {{ bem(base) }}>
+  <h1 class="visually-hidden">{{ label }}</h1>
+
+  <div {{ bem('slider-row', [], base, ['row']) }}>
+    <div class="col--12">
+      {{ content.field_slideshow }}
+    </div>
+  </div>
+
+  {{ content.field_image_buttons }}
+
+  <div {{ bem('footer-row', [], base, ['row']) }}>
+    <div class="col-lg-7 col-md-6 col--12">
+      {{ content.field_highlight }}
+    </div>
+
+    <div class="col-lg-5 col-md-6 col--12">
+      {{ content.field_footer_view }}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,10 @@
+{# Load the block that will display at the end of the view. In the designs this is the "View Archives" button. #}
+{% set last_row = {content: drupal_block('block_content:626c7a76-8192-4dbb-9b6b-8f84aed17fca') } %}
+
+{% set rows = rows|merge( [ last_row ] ) %}
+
+{% include "@molecules/70-card-grid/_card-grid.twig" with  {
+  card_grid: {
+    rows: rows
+  }
+} only %}

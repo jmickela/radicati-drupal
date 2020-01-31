@@ -1,0 +1,110 @@
+@import "../../variables";
+
+// Title section for landing page
+.field--name-field-action-button .paragraph--type--view-content,
+.field--name-field-footer-view .paragraph--type--view-content {
+
+  .field__item {
+    background-image: url(../images/flag.jpg);
+    background-size: cover;
+  }
+
+  .viewsreference__title-wrapper {
+    @include rem('height', 71px);
+    @include rem('padding-left', 15px);
+    display: flex;
+    align-items: center;
+  }
+
+  .viewsreference__title {
+    @include rem('padding', 5px 5px 0 5px);
+    text-transform: uppercase;
+    color: white;
+    line-height: 0.8;
+    background-color: $color--red;
+  }
+}
+
+
+.view-aclunc-issues-block {
+  .view-content {
+    background-color: $color--light-orange;
+
+    ul {
+      columns: 2;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      @include rem('margin', 0 0 10px 0);
+
+      &:nth-of-type(3) {
+        break-after: column;
+      }
+    }
+
+    .views-field-name {
+      line-height: 0;
+    }
+
+    a {
+      @include rem('font-size', 16px);
+      font-weight: bold;
+      font-stretch: condensed;
+      font-family: $font--gt-america;
+      line-height: 1.88;
+      text-transform: uppercase;
+      color: $color--dark-gray;
+    }
+  }
+}
+
+// Landing Page Version
+.view-aclunc-issues-block.view-display-id-embed_2 {
+  .view-content {
+    @include rem('padding', 15px 15px 30px 15px);
+
+    a {
+      @include rem('font-size', 12px);
+      line-height: 1.2;
+
+      @include breakpoint($breakpoint-sm) {
+        @include rem('font-size', 16px);
+      }
+
+      @include breakpoint($breakpoint-md) {
+        @include rem('font-size', 18px);
+      }
+    }
+  }
+}
+
+// Homepage Version
+.view-aclunc-issues-block.view-display-id-embed_1 {
+  @include rem('margin-bottom', 22px);
+
+  @include breakpoint($breakpoint-md) {
+    margin-bottom: 0;
+  }
+
+  .view-content {
+    @include rem('padding', 20px 10px 30px 38px);
+
+    a {
+      @include rem('font-size', 16px);
+      line-height: 1.2;
+
+      @include breakpoint($breakpoint-sm) {
+        @include rem('font-size', 20px);
+      }
+    }
+
+    li {
+      @include breakpoint($breakpoint-sm) {
+        @include rem('margin', 0 0 15px 0);
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "drupal/rexe",
+  "type": "drupal-module",
+  "description": "Module that enhancements the Drupal 8 Editor eXperience.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/rexe",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/rexe",
+    "source": "http://cgit.drupalcode.org/rexe"
+  },
+  "require": { }
+}

@@ -1,0 +1,166 @@
+@import "../variables";
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 62.5%;
+}
+
+body {
+  overflow-x: hidden;
+  @include rem('letter-spacing', 0.5px);
+  @include rem('font-size', 16px);
+  margin: 0;
+  padding: 0;
+
+  font-family: $font--primary;
+  line-height: 1.5;
+  color: $color--text-primary;
+
+  min-height: 800px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+
+
+#page-content {
+  @include rem('margin-bottom', 30px);
+}
+
+article.article.article--action,
+article.article.article--article,
+article.article.article--blog,
+article.article.article--events,
+article.article.article--know-your-rights-resource,
+article.article.article--legislative-advocacy-toolkit,
+article.article.article--legislation,
+article.article.article--news {
+  // @include rem('font-size', 18px);
+  line-height: 1.69;
+}
+
+// action,
+// article,
+// // page,
+// blog,
+// // case,
+// // chapter,
+// events,
+// // job-fellowship-internship,
+// know-your-rights-resource,
+// legislative-advocacy-toolkit,
+// legislation,
+// news,
+// // publication,
+// // slideshow-slide,
+// // small-victory,
+// // webform
+
+
+// Limit line height of h1 on most pages
+body:not(.page-node-type-homepage):not(.page-node-type-landing-page):not(.page-node-type-staff-listing-page) {
+  h1 {
+    line-height: 1.2;
+  }
+}
+
+// // Limit line height of h1 on most pages
+// body:not(.page-node-type-homepage):not(.page-node-type-landing-page):not(.page-node-type-listing-page):not(.page-node-type-staff-listing-page) {
+//   h1 {
+//     line-height: 1.2;
+//   }
+// }
+
+
+/*
+Notes on other content types:
+
+article.staff-page // doesn't have .article .article--
+
+body.page-node-type-staff-listing-page -- doesn't seem to have a main article! it's got lots of little articles (one for each card...) <-- this is both the staff and board listing pages
+
+article.homepage,
+article.listing-page,
+article.landing-page
+*/
+
+
+
+/* We decided not to do this after all... I'm hanging on to the code, just in case the clients change their minds again...
+// limit width of content (body field, summary, and paragraphs) on most pages, with a few exceptions:
+$max-content-area-width: 1215px;
+
+body:not(.page-node-type-homepage):not(.page-node-type-landing-page):not(.page-node-type-listing-page):not(.page-node-type-staff-listing-page):not(.page-node-type-staff):not(.path-taxonomy) {
+  #page-content {
+    div:not(.container):not(.row):not(.col--12):not(.region-content):not(.block-system):not(.field--name-field-hero-image):not(.media--view-mode-article-hero):not(.field--name-field-media-image):not(.article__hero-image):not(.field--name-field-image) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%;
+
+      @include breakpoint($breakpoint-md) {
+        @include rem('max-width', $max-content-area-width);
+      }
+    }
+  }
+}
+*/
+
+
+
+
+//h1, h2, h3, h4, h6 {
+//  font-weight: bold;
+//  margin: 0;
+//}
+//
+//h1 {
+//  @include rem('font-size', 25px);
+//  @include rem('letter-spacing', 0.7px);
+//
+//
+//  @include media-up(md) {
+//    @include rem('font-size', 30px);
+//  }
+//
+//  @include media-up(lg) {
+//    @include rem('font-size', 40px);
+//  }
+//}
+//
+//h2 {
+//  @include rem('font-size', 28px);
+//  @include rem('letter-spacing', 0.6px);
+//}
+//
+//h3 {
+//  @include rem('font-size', 24px);
+//  @include rem('letter-spacing', 0);
+//}
+//
+//h4 {
+//  @include rem('font-size', 20px);
+//}
+//
+//h5 {
+//  @include rem('font-size', 18px);
+//  @include rem('letter-spacing', 0.6px);
+//}
+//
+//h6 {
+//  @include rem('font-size', 16px);
+//  line-height: 1.25;
+//}
+//
+//a, a:hover {
+//  text-decoration: none;
+//  color: $color--text-primary;
+//}
+//
+//img {
+//  max-width: 100%;
+//  height: auto;
+//}

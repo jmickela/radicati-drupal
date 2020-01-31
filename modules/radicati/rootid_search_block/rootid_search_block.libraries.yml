@@ -1,0 +1,12 @@
+rootid_search_block:
+  version: VERSION
+  css:
+    base:
+      dist/rootid-search-block.css: {}
+
+rootid_dropdown_search_block:
+  version: VERSION
+  js:
+    dist/rootid-dropdown-search-block.js: {}
+  dependencies:
+    - core/jquery.once

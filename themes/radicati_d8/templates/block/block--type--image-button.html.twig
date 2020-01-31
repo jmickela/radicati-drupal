@@ -1,0 +1,21 @@
+{%
+  set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% include "@molecules/58-action-button/_action-button.twig" with {
+    action_button: {
+      mods: ['large'],
+      title: {
+        content: content['#block_content'].field_link.0.value.title
+      },
+      link: {
+        href: content['#block_content'].field_link.0.url
+      },
+      image: content.field_background_image
+    }
+  } only %}
+</div>

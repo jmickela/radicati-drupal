@@ -1,0 +1,47 @@
+@import "../../variables";
+
+.slideshow {
+  @include rem('margin-bottom', 16px);
+  position: relative;
+
+  .slick-arrow {
+
+    @include rem('width', 44px);
+    @include rem('height', 44px);
+
+    @include rem('line-height', 44px);
+    padding: 0;
+
+
+    color: rgba(white, 0.6);
+
+    position: absolute;
+    top: 37%;
+    transform: translateY(-50%);
+    z-index: 10;
+    border: 0;
+    background: none;
+
+    .icon {
+      @include rem('font-size', 30px);
+
+      @include breakpoint($breakpoint-lg) {
+        @include rem('font-size', 43px);
+      }
+
+    }
+
+    @include breakpoint($breakpoint-lg) {
+      top: 50%;
+    }
+  }
+
+  .slick-prev {
+    @include rem('left', 20px);
+  }
+
+  .slick-next {
+    @include rem('right', 20px);
+  }
+
+}

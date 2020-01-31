@@ -1,0 +1,78 @@
+@import "../../variables";
+
+#block-radicati-d8-breadcrumbs {
+  @include rem('padding-bottom', 15px);
+}
+
+.breadcrumbs {
+  // background-color: lightgray;
+}
+
+
+.breadcrumbs__list {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // li {
+  //   border: 1px dashed green;
+  // }
+}
+
+.breadcrumbs__list__item {
+  // display: block;
+  @include rem('font-size', 12px);
+  @include rem('margin', 5px);
+  text-align: center;
+  // float: left;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  // a {
+  //   @include rem('font-size', 12px);
+  // }
+}
+
+.breadcrumbs__list__item--current-page {
+  font-weight: bold;
+}
+
+.list_item--separator {
+  // display: flex;
+  // align-items: center;
+  height: 100%;
+  @include rem('padding', 0 0 2px);
+  font-family: $fontello-font-name;
+  @include rem('font-size', 10px);
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  // display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.breadcrumb--separator {
+  padding: 0;
+}
+
+// Individual breadcrumb link
+
+// .breadcrumb {
+//   color: black;
+// }
+
+// .breadcrumb--no-link {
+//   color: gray;
+// }

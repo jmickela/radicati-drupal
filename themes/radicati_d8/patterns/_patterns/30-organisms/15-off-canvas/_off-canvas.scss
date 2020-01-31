@@ -1,0 +1,363 @@
+@import "../../variables";
+
+$offcanvas-width: 320px;
+$offcanvas-transition-time: 300ms;
+// $offcanvas-transition-time: 1000ms;
+
+#off-canvas {
+  background-color: $color--jordy-blue;
+  height: 100%;
+  left: -$offcanvas-width;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  transition: left $offcanvas-transition-time ease;
+  @include rem('width', $offcanvas-width);
+  z-index: 20160121;
+}
+
+body {
+  margin-left: 0;
+  margin-right: 0;
+  transition: margin $offcanvas-transition-time ease;
+}
+
+body.off-canvas-open {
+  margin-left: $offcanvas-width;
+  margin-right: -$offcanvas-width;
+
+  .oc-overlay {
+    position: fixed;
+    width: 100%;
+    // height: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    background-color: rgba($color--medium-gray, 0.85);
+  }
+}
+
+#off-canvas.off-canvas--open {
+  left: 0;
+}
+
+.off-canvas {
+
+  .offcanvas__header {
+    align-items: center;
+    background-image: url('../images/stripe.png');
+    background-repeat: repeat;
+    display: flex;
+    @include rem('height', 45px);
+  }
+
+  .offcanvas__logo {
+    margin-right: auto;
+    @include rem('margin-left', 10px);
+    @include rem('max-width', 150px);
+    @include rem('padding-top', 5px);
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  .offcanvas__close {
+    $close-button-size: 27px;
+
+    background: none;
+    border: none;
+    // @include rem('height', $close-button-size);
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: unset;
+
+    .close-button {
+      display: block;
+      @include rem('height', $close-button-size);
+      position: relative;
+      @include rem('width', $close-button-size);
+
+      span {
+        background-color: white;
+        display: block;
+        @include rem('border-radius', 2px);
+        @include rem('height', 3px);
+        position: absolute;
+        top: 50%;
+        @include rem('width', 30px);
+        transform-origin: center;
+        transition: transform $offcanvas-transition-time ease;
+
+
+        &:first-of-type {
+          transform: translateY(-50%) rotate(45deg);
+        }
+
+        &:nth-of-type(2) {
+          transform: translateY(-50%) rotate(-45deg);
+        }
+      }
+
+      &:active,
+      &:focus {
+        span {
+          &:first-of-type {
+            transform: translateY(-50%) rotate(-45deg);
+          }
+
+          &:nth-of-type(2) {
+            transform: translateY(-50%) rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+
+  .navigation.menu--offcanvas--main {
+
+    // top level menu styling
+    ul.menu {
+      @include rem('padding', 9px 0 0);
+
+      // top level menu items
+      >li.menu__menu-item {
+        background-color: $color--jordy-blue;
+        border-bottom: 1px solid $color--lighter-blue;
+
+        >a {
+          text-transform: uppercase;
+        }
+      }
+
+      // general styling for all the submenus
+      ul.sub-menu {
+        background-color: $color--blue;
+      }
+
+      // 1st level menu items
+      .sub-menu.menu--level-1 {
+        // border: 5px dashed green;;
+
+        // 1st level menu items in general
+        >li.sub-menu__menu-item {
+
+          >a {
+            color: $color--jordy-blue;
+            font-family: $font--roboto;
+            font-stretch: normal;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+
+  .navigation.menu--secondary-navigation {
+    ul.menu {
+      background-color: $color--lighter-blue;
+      @include rem('padding', 9px 0 21px);
+
+      li {}
+    }
+  }
+
+  .navigation.menu--offcanvas--main,
+  .navigation.menu--secondary-navigation {
+    $offcanvas-menu-indent: 0;
+
+    // top level menu styling
+    ul.menu {
+      align-items: stretch;
+      display: flex;
+      flex-direction: column;
+      // justify-content: center;
+      margin: 0;
+      max-width: 100%;
+      text-align: center;
+
+      &.open {
+        ul.sub-menu {
+          display: flex;
+        }
+      }
+
+      // top level menu items
+      >li.menu__menu-item {
+        position: relative;
+
+        >a {
+          color: white;
+          font-family: $font--gt-america;
+          @include rem('font-size', 19px);
+          font-stretch: condensed;
+          font-weight: bold;
+        }
+      }
+
+      li {
+        align-items: center;
+        justify-content: center;
+
+        a {
+          @include rem('padding', 7px 0);
+        }
+
+        a,
+        span {
+          flex: 0 0 auto;
+        }
+      }
+
+      // menu and submenu items with children
+      li[class*="menu-item--expanded"] {
+        flex-wrap: wrap;
+
+        ul {
+          align-items: stretch;
+          flex-basis: 100%;
+        }
+
+        .dropdown-toggle {
+          position: absolute;
+          @include rem('right', 10px);
+          @include rem('top', 7px);
+
+          i::before {
+            color: $color--red;
+            @include rem('font-size', 18px);
+          }
+        }
+      }
+
+      // general styling for all the submenus
+      ul.sub-menu {
+        flex-direction: column;
+        max-width: 100%;
+        @include rem('padding', 14px 0 13px $offcanvas-menu-indent);
+      }
+
+      // 1st level menu items
+      .sub-menu.menu--level-1 {
+
+        // 1st level menu items in general
+        >li.sub-menu__menu-item {
+
+          >a {
+            @include rem('padding', 7px 0 7px);
+          }
+        }
+
+        // 1st level menu items with children
+        >li.sub-menu__menu-item--expanded {}
+
+
+      }
+
+      // 2nd level menu items
+      .sub-menu.menu--level-2 {
+
+        >li.sub-menu__menu-item {}
+      }
+
+      .sub-menu.menu--level-3 {
+
+        >li.sub-menu__menu-item {}
+      }
+
+      .sub-menu.menu--level-4 {
+
+        >li.sub-menu__menu-item {}
+      }
+    }
+  }
+
+  .inlinesearch {
+    background-color: $color--blue;
+    @include rem('padding', 16px 10px 28px 20px);
+  }
+
+  // .inlinesearch__form-label {
+  //   display: none;
+  // }
+
+  // .inlinesearch__form-wrapper {
+  //   position: relative;
+  // }
+
+  .inlinesearch__form {
+
+    display: flex;
+
+    .form-item {
+      margin: 0;
+    }
+
+    input {
+      background-color: transparent;
+      border: none;
+      @include rem('height', 35px);
+
+      &[type='text'] {
+        border-bottom: 2px solid white;
+        color: white;
+
+        &::placeholder {
+          color: white;
+          font-family: $font--gt-america;
+          @include rem('font-size', 19px);
+          font-stretch: condensed;
+          font-weight: bold;
+          @include rem('left', -10px);
+          position: relative;
+          text-transform: uppercase;
+        }
+
+        &:focus {
+          outline: white auto 5px;
+        }
+      }
+
+      &[type='submit'] {
+        display: none;
+      }
+    }
+
+    .inlinesearch__submit {
+      background: none;
+      border: none;
+      height: unset;
+      margin: 0;
+      @include rem('padding', 13px 5px 2px 8px);
+      // transition: all 250ms ease;
+
+      i {
+        border-color: white;
+        border-radius: 50%;
+        border-style: solid;
+        @include rem('border-width', 2px);
+        @include rem('font-size', 14px);
+        @include rem('height', 23px);
+        @include rem('width', 23px);
+        transition: color 250ms ease, border-color 250ms ease, opacity 250ms ease;
+      }
+
+      &:hover {
+        i {
+          color: white;
+          opacity: .7;
+        }
+      }
+
+      &:focus,
+      &:active {
+        outline: white auto 5px;
+      }
+    }
+  }
+}

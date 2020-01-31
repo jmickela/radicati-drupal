@@ -1,0 +1,19 @@
+{% set base = 'related-content' %}
+
+<aside {{ bem(base) }} aria-label="{{ "Related Content"|trans }}">
+  <div {{ bem('header', [], base) }}>
+    <div class="container">
+      <div class="row">
+        <div class="col--12">
+          {{ related_content.title_prefix }}
+          <h2 {{ bem('title', [], base) }}>{{ related_content.title }}</h2>
+          {{ related_content.title_suffix }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div {{ bem('content', [], base, ['container']) }}>
+    {{ related_content.content }}
+  </div>
+</aside>

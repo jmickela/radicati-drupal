@@ -1,0 +1,22 @@
+{% set attributes = attributes.removeAttribute('role') %}
+
+{% include "@templates/40-article/_article.twig" with {
+  promoted: promoted,
+  sticky: sticky,
+  published: published,
+  view_mode: view_mode,
+  content_type: node.bundle|clean_class,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  page: page,
+  url: url,
+  label: label,
+  subtitle: content.field_short_title,
+  hero_image: content.field_hero_image,
+  hide_image: node.field_hide_image.0.value ? node.field_hide_image.0.value : null,
+  content: content|without('field_content_sections', 'field_hero_image', 'field_short_title'),
+  content_sections: content.field_content_sections,
+  content_attributes: content_attributes,
+  attributes: attributes,
+  created: node.createdtime|format_date('short_month_day_year')
+} only %}

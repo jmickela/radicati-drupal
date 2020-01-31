@@ -1,0 +1,5 @@
+name: 'Radicati Component Library Helper Module'
+type: module
+description: 'Module that provides some base functionality for the Radicati Component Library, which is used in themes made by Rootid.'
+core: 8.x
+package: 'radicati'

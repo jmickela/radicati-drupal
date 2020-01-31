@@ -1,0 +1,22 @@
+{%
+  set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}{{ title_suffix }}
+
+  {% include "@molecules/55-footer-highlight/_footer-highlight.twig" with {
+    highlight: {
+      title: content.field_title,
+      content: content.body,
+      image: content.field_background_image,
+      link: {
+        href: content['#block_content'].field_button.0.url,
+        content: content['#block_content'].field_button.0.value.title
+      }
+    }
+  } only %}
+</div>

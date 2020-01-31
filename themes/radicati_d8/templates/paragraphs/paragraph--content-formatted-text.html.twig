@@ -1,0 +1,7 @@
+{% extends "paragraph.html.twig" %}
+
+{% block content %}
+    {% include "@organisms/54-content-wysiwyg/_content-wysiwyg.twig" with {
+      content: content
+    } only %}
+{% endblock %}

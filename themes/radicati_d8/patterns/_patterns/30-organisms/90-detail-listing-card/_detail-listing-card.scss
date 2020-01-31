@@ -1,0 +1,48 @@
+@import "../../variables";
+
+.card--detail-listing {
+  @include rem('margin-bottom', 66px);
+
+  .card__image {
+    @include rem('margin-bottom', 20px);
+  }
+
+  .card__label {
+    @include rem('margin-bottom', 5px);
+    @include rem('font-size', 16px);
+    color: $color--medium-gray;
+    font-family: $font--gt-america;
+    font-stretch: condensed;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .card__title {
+    @include rem('font-size', 20px);
+    font-family: $font--gt-america;
+    font-weight: bold;
+    font-stretch: condensed;
+    @include rem('margin-bottom', 10px);
+  }
+
+  .card__content {
+    @include rem('font-size', 14px);
+    font-family: $font--roboto;
+    letter-spacing: 0;
+    line-height: 2;
+    color: $color--dark-gray;
+
+    div {
+      display: inline;
+    }
+
+    a {
+      @include rem('font-size', 16px);
+      font-family: $font--gt-america;
+      font-weight: bold;
+      font-stretch: condensed;
+      color: $color--blue;
+
+    }
+  }
+}

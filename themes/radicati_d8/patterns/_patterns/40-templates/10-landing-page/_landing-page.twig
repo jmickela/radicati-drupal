@@ -1,0 +1,44 @@
+{% set base = 'landing-page' %}
+
+<article {{ bem(base) }}>
+
+        {{ content.field_hero_image }}
+
+        <div {{ bem('content-row', [], base, ['row']) }}>
+          <div class="col-lg-8 col--12">
+            {% include "@atoms/05-heading/_heading.twig" with {
+              heading: {
+                parent: base,
+                base: 'title',
+                level: 1,
+                content: title
+              }
+            } only %}
+
+            <div {{ bem('content', [], base) }}>
+              {{ content|without('field_hero_image', 'field_action_button', 'field_include_all', 'field_main_issue', 'field_sub_topics', 'field_listing_content') }}
+            </div>
+          </div>
+
+          <div class="col-lg-4 col--12">
+            {{ content.field_action_button }}
+          </div>
+        </div>
+
+        <div {{ bem('sub-topics', [], base, ['row']) }}>
+          <div class="col--12">
+            {{ content.field_sub_topics }}
+          </div>
+        </div>
+
+        {% if listing_content %}
+          <div {{ bem('listing-row', [], base, ['row']) }}>
+            <div class="col--12">
+              {% include '@organisms/75-tabbed-listing/_tabbed-listing.twig' with {
+                items: listing_content,
+                show_all_tab: show_all_tab
+              } only %}
+            </div>
+          </div>
+        {% endif %}
+</article>

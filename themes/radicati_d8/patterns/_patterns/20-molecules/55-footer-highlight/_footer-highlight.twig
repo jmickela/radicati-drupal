@@ -1,0 +1,25 @@
+{% include "@molecules/00-card/_card.twig" with {
+  card: {
+    mods: ['footer-highlight'],
+    background_image: {
+      content: highlight.image
+    },
+    body: {
+      title: {
+        mods: ['white'],
+        link: {
+          href: highlight.link.href
+        },
+        content: highlight.title
+      },
+      content: {
+        content: highlight.content,
+      },
+      button: {
+        mods: ['white'],
+        href: highlight.link.href,
+        content: highlight.link.content
+      }
+    }
+  }
+} only %}

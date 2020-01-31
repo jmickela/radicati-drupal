@@ -1,0 +1,245 @@
+<?php
+
+// this is needed for region-based block template suggestions
+use Drupal\block\Entity\Block;
+use \Drupal\views\Views;
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function radicati_d8_page_attachments_alter(array &$page) {
+  // Tell IE to use latest rendering engine (not to use compatibility mode).
+  /*$ie_edge = [
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => [
+    'http-equiv' => 'X-UA-Compatible',
+    'content' => 'IE=edge',
+    ],
+  ];
+  $page['#attached']['html_head'][] = [$ie_edge, 'ie_edge'];*/
+}
+
+
+
+/**
+ * Implements hook_preprocess_page() for page.html.twig.
+ */
+function radicati_d8_preprocess_page(array &$variables) {
+  if(\Drupal::service('path.matcher')->isFrontPage()) {
+    $variables['#cache']['contexts'][] = 'cookies:STYXKEY_sm_seen';
+
+    if(!empty($_COOKIE['STYXKEY_sm_seen']) && $_COOKIE['STYXKEY_sm_seen']) {
+      unset($variables['page']['site_message']);
+    } else {
+      setcookie('STYXKEY_sm_seen', "1");
+    }
+  }
+
+}
+
+
+function radicati_d8_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if(isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0 , 'block__type__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+
+  if (!empty($variables['elements']['#id'])) {
+    if (isset($variables['elements']['#id'])) {
+      if ($block = Block::load($variables["elements"]["#id"])) {
+        $region = $block->getRegion();
+        $suggestions[] = 'block__' . $region;
+        $suggestions[] = 'block__' . $region . '__' . $variables['elements']['#base_plugin_id'];
+        $suggestions[] = 'block__' . $region . '__' . $variables['elements']['#id'];
+        $suggestions[] = 'block__' . $region . '__' . $variables['elements']['#base_plugin_id'] . '__' . $variables['elements']['#id'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for Block document templates.
+ */
+function radicati_d8_preprocess_block(&$variables) {
+  if (isset($variables['elements']['#id'])) {
+    $region = Block::load($variables['elements']['#id'])->getRegion();
+    $variables['content']['#attributes']['region'] = str_replace('-', '_', $region);
+  }
+
+  if (!empty($variables["elements"]["#id"]) && $variables["elements"]["#id"] == 'defaultsitemessage') {
+    if (!empty($variables['elements']['content']['field_background_image'])) {
+
+      // get the image uri from the entity reference
+      $uri = $variables['content']['#block_content']->get('field_background_image')->entity->get('field_media_image')->entity->uri->value;
+
+      // get the image object attached to that uri
+      $image = \Drupal::service('image.factory')->get($uri);
+
+      // verify that it's really an image, and if so store the needed info as an object in $variables
+      if ($image->isValid()) {
+
+        $variables['site_message_background_image'] = [
+          'url' => file_create_url($uri),
+          'width' => $image->getWidth(),
+          'height' => $image->getHeight(),
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function radicati_d8_theme_suggestions_menu_alter(&$suggestions, $variables) {
+
+  if (isset($variables['attributes']['region'])) {
+    $suggestions[] = 'menu__' . $variables['attributes']['region'];
+    $suggestions[] = 'menu__' . str_replace('-', '_', $variables['menu_name']) . '__' . $variables['attributes']['region'];
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function radicati_d8_preprocess_node(array &$variables) {
+
+  if($variables['view_mode'] == 'detail_listing_card' ||
+    $variables['view_mode'] == 'card_listing_item' ||
+    $variables['view_mode'] == 'card_staff_listing' ||
+    $variables['view_mode'] == 'card_vertical_listing') {
+
+    if(!$variables['node']->hasField('field_summary') || $variables['node']->field_summary->isEmpty()) {
+      $val = $variables['node']->body->getValue();
+      if(!empty($val)) {
+        if(!empty($val[0]['summary'])) {
+          $variables['summary'] = $val[0]['summary'];
+        } elseif ($variables['view_mode'] == 'card_vertical_listing') {
+          $variables['summary'] = $val[0]['value'];
+        }
+      } else {
+        $variables['summary'] = null;
+      }
+    } else {
+      $variables['summary'] = $variables['node']->field_summary->getValue()[0]['value']; // $variables['content']['field_summary'];
+    }
+  }
+
+  if ($variables['node']->hasField('field_additional_authors') && !empty($variables['node']->get('field_additional_authors')->getValue()[0]['target_id'])) {
+    $additional_author_id = $variables['node']->get('field_additional_authors')->getValue()[0]['target_id'];
+
+    $additional_author = \Drupal\user\Entity\User::load($additional_author_id);
+
+    if (!empty($additional_author->get('name'))) {
+      $additional_author_name = $additional_author->get('name')->getValue()[0]['value'];
+    } else {
+      $additional_author_name = null;
+    }
+    if (!empty($additional_author->get('field_twitter_account'))) {
+      $additional_author_twitter = $additional_author->get('field_twitter_account')->getValue()[0]['value'];
+    } else {
+      $additional_author_twitter = null;
+    }
+
+    $variables['node']->additional_author = [
+      'name' => $additional_author_name,
+      'twitter_handle' => $additional_author_twitter,
+    ];
+  }
+}
+
+
+
+/**
+ * Implements hook_theme_suggestions_views_view_alter().
+ */
+function radicati_d8_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function radicati_d8_preprocess_pager(&$variables) {
+  if (!empty($variables['items'])) {
+    if (!empty($variables['items']['next'])) {
+      $variables['items']['next']['href'] = $variables['items']['next']['href'] . '#pager-content';
+    }
+    if (!empty($variables['items']['last'])) {
+      $variables['items']['last']['href'] = $variables['items']['last']['href'] . '#pager-content';
+    }
+
+    foreach($variables['items']['pages'] as $key => $item) {
+      if( !strpos($variables['items']['pages'][$key]['href'], '#listing-content')) {
+        $variables['items']['pages'][$key]['href'] = $variables['items']['pages'][$key]['href'] . '#pager-content';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function radicati_d8_preprocess_form(array &$variables) {
+  //$variables['attributes']['novalidate'] = 'novalidate';
+}
+
+function radicati_d8_form_alter(&$form, $form_state, $form_id) {
+  $form['#attached']['library'][] = 'radicati_d8/form-labels';
+
+  // Hide the label and the submit button on the listing page filter form. Also
+  // change the "all" label to be "filter by issue"
+  if($form_id == 'views_exposed_form' && ($form['#id'] == 'views-exposed-form-radicati-listing-page-driver-embed-1' || $form['#id'] == 'views-exposed-form-radicati-listing-page-driver-embed-2')) {
+    $form['issues']['#options']['All'] = t('FILTER BY ISSUE');
+    $form['issues']['#title_display'] = 'invisible';
+
+    $form['actions']['submit']['#attributes']['class'][] = 'visually-hidden';
+  }
+  if ($form_id == 'views_exposed_form' && ($form['#id'] == 'views-exposed-form-aclunc-custom-listings-embed-1' || $form['#id'] == 'views-exposed-form-aclunc-custom-listings-embed-2')) {
+    $form['tid']['#options']['All'] = t('FILTER BY ISSUE');
+    $form['tid']['#title_display'] = 'invisible';
+    $form['field_case_status_value']['#options']['All'] = t('FILTER BY STATUS');
+    $form['field_case_status_value']['#title_display'] = 'invisible';
+    $form['actions']['submit']['#attributes']['class'][] = 'visually-hidden';
+  }
+}
+
+/**
+ * Implements hook_preprocess_select().
+ */
+function radicati_d8_preprocess_select(array &$variables) {
+  //$variables['attributes']['class'][] = 'select-chosen';
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function radicati_d8_preprocess_field(array &$variables, $hook) {
+  /*switch ($variables['element']['#field_name']) {
+  }*/
+}
+
+/**
+ * Implements hook_preprocess_details().
+ */
+function radicati_d8_preprocess_details(array &$variables) {
+  /*$variables['attributes']['class'][] = 'details';
+  $variables['summary_attributes']['class'] = 'summary';*/
+}
+
+/**
+ * Implements hook_theme_suggestions_details_alter().
+ */
+function radicati_d8_theme_suggestions_details_alter(array &$suggestions, array $variables) {
+
+}
+
+/**
+ * Implements hook_preprocess_menu_local_task().
+ */
+function radicati_d8_preprocess_menu_local_task(array &$variables) {
+  //$variables['element']['#link']['url']->setOption('attributes', ['class'=>'rounded']);
+}
+
+

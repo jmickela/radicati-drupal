@@ -1,0 +1,49 @@
+{% if not_article %}
+  <div {{ bem('fliphovercard', fliphovercard_modifiers) }}>
+{% else %}
+  <article {{ bem('fliphovercard', fliphovercard_modifiers) }}">
+{% endif %}
+
+  <div {{ bem('inner', null, 'fliphovercard') }}>
+    <div {{ bem('front', null, 'fliphovercard') }}>
+      {% include "50-cards/10-card1/00-card1.twig" with {
+        not_article: true,
+        card_modifiers: flipcard_front.card_modifiers,
+        card_media: flipcard_front.card_media,
+        card_img: flipcard_front.card_img,
+        
+        card_labels: flipcard_front.card_labels,
+
+        card_title: flipcard_front.card_title,
+        card_content: flipcard_front.card_content,
+        card_href: flipcard_front.card_href,
+        button_href: flipcard_front.button_href,
+        button_content: flipcard_front.button_content
+
+      } only %}
+    </div>
+
+    <div {{ bem('back', null, 'fliphovercard') }}>
+      {% include "50-cards/10-card1/00-card1.twig" with {
+        not_article: true,
+        card_modifiers: flipcard_back.card_modifiers,
+        card_media: flipcard_back.card_media,
+        card_img: flipcard_back.card_img,
+
+        card_labels: flipcard_back.card_labels,
+
+        card_title: flipcard_back.card_title,
+        card_content: flipcard_back.card_content,
+        card_href: flipcard_back.card_href,
+        button_href: flipcard_back.button_href,
+        button_content: flipcard_back.button_content
+      } only %}
+    </div>
+  </div>
+
+
+{% if not_article %}
+  </div>
+{% else %}
+  </article>
+{% endif %}

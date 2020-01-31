@@ -1,0 +1,38 @@
+{{ attach_library('radicati_d8/ie-svg') }}
+
+{% embed "@molecules/00-card/_card.twig" with {
+  card: {
+    mods: ['site-message'],
+    link: {
+      href: link
+    },
+    background_image: {
+      content: background
+    },
+    body: {
+      content: {
+        content: title
+      }
+    }
+  },
+  background_image: background_image
+} only %}
+
+  {% block card_extra_content %}
+    {# This is an alternative way of displaying the site message background image. It's a huge PITA and the only reason I'm doing this is that the regular image has a filter: blur applied, which IE doesn't support. #}
+    {# This solution depends on JS, so if somebody is running IE with JS disabled, they just don't get a blurry background image. #}
+    {# This isn't a responsive image, so it's loading the full-size original. However, it will only load if the ie-svg script is triggered, which copies the data-uri value to href and thus loads the image. #}
+    {# In theory, all the devices that are running IE will be non-mobile, so this should be ok... #}
+    <div {{ bem('ie-background-image-wrapper', null, 'card') }}>
+      <svg {{ bem('ie-background-image', null, 'card', ['image--ie-replacement-svg']) }} preserveAspectRatio="xMidYMid slice" viewbox="0 0 {{ background_image.width }} {{ background_image.height }}">
+        <defs>
+          <filter id="blur">
+            <feGaussianBlur stddeviation="3"/>
+          </filter>
+        </defs>
+        <image data-uri="{{ background_image.url }}" width="{{ background_image.width }}" height="{{ background_image.height }}" filter="url(#blur)"></image>
+      </svg>
+    </div>
+  {% endblock card_extra_content %}
+
+{% endembed %}

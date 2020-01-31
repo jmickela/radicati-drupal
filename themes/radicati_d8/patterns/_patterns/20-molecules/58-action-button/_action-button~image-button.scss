@@ -1,0 +1,79 @@
+@import "../../variables";
+
+// This is a special case of the action button, it's on the homepage.
+
+.action-button--image-button {
+  @include rem('height', 291px);
+  @include rem('margin', 0 auto 25px auto);
+
+  &:hover {
+    .card__background-image {
+      &:after {
+        filter: brightness(75%);
+        transition: filter 350ms;
+      }
+    }
+  }
+
+  .card__background-image {
+    //z-index: -2;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba($color--light-orange, 0.6);
+      filter: brightness(100%);
+      transition: filter 350ms;
+      //z-index: -1;
+    }
+  }
+
+  .card__inner {}
+
+  .card__body {
+    @include rem('height', 80px);
+    @include rem('padding', 5px 19px);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(black, 0.59);
+
+  }
+
+  .card__title {
+    // @include rem('font-size', 30px);
+    @include poly-fluid-rem('font-size', (22em: 24px, 25em: 30px));
+    position: unset;
+    max-width: unset;
+
+    @include breakpoint($breakpoint-md) {
+      @include rem('font-size', 18px);
+    }
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('font-size', 28px);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      @include rem('font-size', 30px);
+    }
+  }
+}
+
+
+// targetting each image button for the different overlays will be tricky.
+
+.card-grid .row>div:nth-child(2) .action-button--image-button .card__background-image:after {
+  background-color: rgba($color--red, 0.6);
+}
+
+.card-grid .row>div:nth-child(3) .action-button--image-button .card__background-image:after {
+  background-color: rgba($color--light-azure, 0.6);
+}

@@ -1,0 +1,49 @@
+@import "../../variables";
+
+// Global page title style. This will need to be overridden on some page templates.
+h1.title {
+  @include rem('margin-bottom', 12px);
+  text-align: center;
+}
+
+#pre-footer-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint($breakpoint-lg) {
+    flex-direction: row;
+  }
+}
+
+.region-pre-footer-one {
+  flex: 1 1 100%;
+
+  @include breakpoint($breakpoint-lg) {
+    flex: 1 1 50%;
+  }
+}
+
+.region-pre-footer-two {
+  flex: 1 1 100%;
+
+  @include breakpoint($breakpoint-lg) {
+    flex: 1 1 50%;
+  }
+}
+
+.region-content {
+  @include rem('padding', 0 10px);
+
+  @include breakpoint($breakpoint-md) {
+    padding: 0;
+  }
+}
+
+// Make links in the body bold
+#page-content {
+  article {
+    a {
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{% set base = 'case-development' %}
+
+<div {{ bem(base) }}>
+  <div {{ bem('status-wrapper', [case.update_type_key], base) }}>
+    {{ case.update_type_label }}
+  </div>
+
+  <div {{ bem('case-data', [], base) }}>
+    <div {{ bem('date', [], base) }}>{{ case.date }}</div>
+    <div {{ bem('text', [], base) }}>{{ case.text }}</div>
+  </div>
+</div>

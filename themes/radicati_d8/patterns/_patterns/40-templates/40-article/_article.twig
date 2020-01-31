@@ -1,0 +1,81 @@
+{% set base = 'article' %}
+
+<article {{ bem(base, [content_type, view_mode]) }}>
+
+  {# Below is needed for inline edit forms to work. #}
+  {{ title_prefix }}{{ title_suffix }}
+  {% if subtitle %}
+    <h2 {{ bem('subtitle', null, base) }}>
+      {{ subtitle }}
+    </h2>
+  {% endif %}
+  {% if content_type != 'events' %}
+  <div {{ bem('post-date', [], base) }}>
+  {% if content_type == 'news' %}
+    <span class="news-date-prefix">{{ 'For Immediate Release:'|trans }}</span>
+  {% endif %}
+    {{ created }}
+  </div>
+  {% else %}
+    {% if event_date.0 %}
+    <div {{ bem('event-date', [], base) }}>
+      <div {{ bem('event-start-date', [], base) }}>
+        {{ event_date }}
+      </div>
+      {% if event_end_date.0 %}
+        {{ ' &ndash; ' }}
+        <div {{ bem('event-end-date', [], base) }}>
+          {{ event_end_date }}
+        </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  {% endif %}
+
+  {% if additional_status or additional_author %}
+    <div {{ bem('status', [], base) }}>
+      {% if additional_author %}
+        {{ additional_author }}
+      {% endif %}
+
+      {% if additional_author  and additional_status %}
+        |
+      {% endif %}
+
+      {% if additional_status %}
+        {{ additional_status }}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% include "@organisms/10-social-share/_social-share.twig" %}
+
+{% if content_type == 'news' %}
+<div {{bem('news-media-contact', [], base) }}>
+  <span {{bem('news-media-contact-prefix', [], base) }}>{{ 'Media Contact:'|trans }}</span> <a href='mailto://press@aclunc.org'>press@aclunc.org</a>, (415) 621-2493
+</div>
+{% endif %}
+
+
+  {% if hero_image %}
+    <div {{ bem('hero-image', [], base) }}>
+      {{ hero_image }}
+    </div>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('article__content') }}>
+    <h2 class="visually-hidden">{{ "Article Media"|trans }}</h2>
+    {% if content.field_image and not hide_image %}
+      <div {{ bem('image', [], base) }}>
+        {{ content.field_image }}
+      </div>
+    {% endif %}
+
+    {{ content|without('field_image', 'field_hero_image', 'field_case_developments') }}
+  </div>
+
+  <div {{ bem('content-sections', [], base) }}>
+    <h2 class="visually-hidden">{{ "Main Article Content"|trans }}</h2>
+    {{ content_sections }}
+  </div>
+</article>

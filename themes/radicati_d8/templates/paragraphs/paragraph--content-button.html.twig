@@ -1,0 +1,20 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% include "@organisms/58-content-button/_content-button.twig" with {
+      button: {
+        href: paragraph.field_cb_button.0.url,
+        content: paragraph.field_cb_button.0.value.title,
+        mods: [paragraph.field_alignment.0.value],
+        attributes: paragraph.field_open_in_new_window.0.value ? { 'target': '_blank' } : null
+      }
+    } only %}
+  </div>
+{% endblock paragraph %}

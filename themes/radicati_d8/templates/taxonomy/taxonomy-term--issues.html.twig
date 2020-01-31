@@ -1,0 +1,33 @@
+{#{%#}
+{#  set classes = [#}
+{#  'taxonomy-term',#}
+{#  'vocabulary-' ~ term.bundle|escape,#}
+{#]#}
+{#%}#}
+{#{% include "@templates/10-landing-page/00-landing-page.twig" with {#}
+{#  attributes: attributes,#}
+{#  title_prefix: title_prefix,#}
+{#  title_suffic: title_suffix,#}
+{#  content: content,#}
+{#  listing: listing,#}
+{#  term: term,#}
+{#  name: name#}
+{#} only %}#}
+
+{% include "@templates/10-landing-page/_landing-page.twig" with {
+  published: published,
+  view_mode: view_mode,
+  title: name,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  page: page,
+  url: url,
+  label: term,
+  content: content,
+  content_attributes: content_attributes,
+  attributes: attributes,
+  listing_content: term.field_listing_content.empty ? null : term.field_listing_content,
+  show_all_tab: true
+} only %}
+
+{# show_all_tab: node.field_include_all.0.value #}

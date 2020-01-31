@@ -1,0 +1,69 @@
+@import "../../variables";
+
+.card--site-message {
+  @include rem('height', 99px);
+  width: 100%;
+
+  .card__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  img {
+    filter: blur(3px);
+    transform: scale(1.1);
+  }
+
+  .card__content {
+    @include rem('font-size', 16px);
+    @include rem('padding', 3px 10px);
+    color: white;
+    font-family: CenturySchool, "Times New Roman", serif;
+    letter-spacing: 0.83px;
+
+
+    background-color: rgba($color-alt-dark-gray, 0.85);
+    text-align: center;
+
+    @include breakpoint($breakpoint-md) {
+      @include rem('font-size', 18px);
+      @include rem('padding', 7px 30px);
+    }
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('font-size', 24px);
+      @include rem('padding', 11px 60px);
+    }
+  }
+
+  .card__ie-background-image-wrapper {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .card__ie-background-image {
+    display: none;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+
+    image {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .kint {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+  }
+}

@@ -1,0 +1,216 @@
+@import "../../variables";
+
+nav.menu--mega-menu {
+  // background-color: $color--jordy-blue;
+  position: inherit;
+  display: none;
+
+  @include breakpoint($breakpoint-lg) {
+    display: block;
+  }
+
+  // &:after {
+  //   content: " ";
+  //   display: block;
+  //   //position: absolute;
+  //   position: relative;
+  //   bottom: -7px;
+  //   left: 7px;
+  //   width: calc(100% - 7px);
+  //   height: 7px;
+  //   background: $color--alt-lighter-blue;
+  // }
+
+  a {
+    font-family: $font--gt-america;
+    text-transform: uppercase;
+  }
+
+  // Transition for menu text on hover.
+  li>a {
+    transition: opacity 500ms ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  >ul.menu {
+    @include rem('font-size', 16px);
+    @include rem('padding', 3px 20px 3px 8px);
+    position: inherit;
+    // justify-content: normal;
+    display: flex;
+    // border: 10px dashed green;
+    justify-content: center;
+    margin: 0;
+    display: flex;
+    flex: 1 0 auto;
+
+    font-weight: bold;
+    font-stretch: condensed;
+
+    @include breakpoint($header-mobile-breakpoint) {}
+
+    @include breakpoint($breakpoint-xl) {
+      @include rem('font-size', 17px);
+      // @include rem('padding', 6px 60px 6px 30px);
+      @include rem('padding', 6px 26px 6px 30px);
+    }
+
+    @include breakpoint($breakpoint-xxl) {
+      @include rem('font-size', 22px);
+      // @include rem('padding', 6px 130px 6px 30px);
+      // @include rem('height', 55px);
+    }
+  }
+
+  >ul.menu>li.menu__menu-item {
+
+
+    @include breakpoint($header-mobile-breakpoint) {
+      @include rem('padding', 0 22px);
+      @include rem('margin-top', 4px);
+      line-height: 1;
+      border-right: 1px solid white;
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      border-right: 3px solid white;
+    }
+
+    &:last-child {
+      border: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+ul.menu.menu--mega-menu {
+  .menu-item {
+    position: inherit;
+  }
+
+  .dropdown-content {
+    display: none;
+    z-index: 42;
+    background-color: rgba($color--alt-blue, 0.95);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    width: 100%;
+
+    @include rem('min-height', 270px);
+
+    &[aria-hidden="false"],
+    &.focus,
+    &.open {
+      display: block;
+    }
+
+    @include breakpoint($header-mobile-breakpoint) {
+      @include rem('padding', 40px 40px 40px 112px);
+    }
+  }
+
+  // this is the content item area, it is a link and a text field.
+  .layout__region--first {
+
+
+    .block-block-content {
+      @include rem('padding-right', 30px);
+      border-right: 1px solid white;
+    }
+
+    .field--type-link a {
+      @include rem('margin-bottom', 20px);
+      position: relative;
+      @include rem('padding', 10px 0 11px 15px);
+      display: block;
+      background-color: rgba($color--red, 0.85);
+
+      &:after {
+        @include rem('width', 23px);
+        @include rem('height', 23px);
+        @include rem('font-size', 14px);
+        line-height: 1.64;
+        position: absolute;
+        right: 13px;
+
+        text-align: center;
+        content: "\e802";
+        font-family: $fontello-font-name;
+        background-color: white;
+        color: rgba($color--red, 0.85);
+
+        //display: flex;
+        //justify-content: center;
+        //align-items: center;
+        //display: block;
+        //top: 50%;
+        //transform: translateY(-50%);
+
+        transition: right 300ms ease;
+      }
+
+      &:hover {
+
+        &:after {
+          right: 5px;
+        }
+      }
+    }
+
+    .field--type-text-with-summary {
+      @include rem('font-size', 18px);
+      @include rem('letter-spacing', 0.3px);
+      line-height: 1.67;
+      font-family: $font--roboto;
+      font-weight: normal;
+    }
+  }
+
+
+  // This is the first set of menu items, all bold links stacked on top of each other.
+  .layout__region--second {
+
+
+    .block {
+      @include rem('padding-left', 30px);
+    }
+
+    ul.menu {
+      @include rem('margin-top', -18px);
+      @include rem('font-size', 20px);
+      line-height: 1.8;
+      font-weight: bold;
+      font-stretch: condensed;
+      flex-direction: column;
+    }
+  }
+
+  // This is the third set of menu links, uppercase parents with non-uppercase children.
+  .layout__region--third {
+    .block {
+      @include rem('padding-left', 30px);
+    }
+
+    ul.menu {
+      @include rem('margin-top', -18px);
+      @include rem('font-size', 20px);
+      line-height: 1.8;
+      font-weight: bold;
+      font-stretch: condensed;
+
+    }
+
+    ul.sub-menu {
+      flex-direction: column;
+    }
+
+    ul.sub-menu a {
+      text-transform: none;
+    }
+  }
+}

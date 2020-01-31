@@ -1,0 +1,16 @@
+{% include "@molecules/00-card/_card.twig" with {
+  card: {
+    mods: ['slide'],
+    link: {
+      href: url
+    },
+    background_image: {
+      content: background
+    },
+    body: {
+      title: {
+        content: title,
+      }
+    }
+  }
+} only %}

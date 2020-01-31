@@ -1,0 +1,73 @@
+
+
+
+
+{% set base = 'staff-listing-page' %}
+
+<article {{ bem(base) }}>
+	<div class="row">
+		<div {{ bem('hero-image', null, base, ['col--12'])}}>
+			{{ content.field_hero_image }}
+      <div {{ bem('title-wrapper', ['larger-screens'], base) }}>
+        {% include "@atoms/05-heading/_heading.twig" with {
+          heading: {
+            parent: base,
+            base: 'title',
+            level: 1,
+            content: title
+          }
+        } only %}
+      </div>
+		</div>
+	</div>
+
+	<div {{ bem('content-row', [], base, ['row']) }}>
+		<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col--12 offset--0">
+      <div {{ bem('title-wrapper', ['smaller-screens'], base) }}>
+        {% include "@atoms/05-heading/_heading.twig" with {
+          heading: {
+            parent: base,
+            base: 'title',
+            level: 1,
+            content: title
+          }
+        } only %}
+      </div>
+			{% include "@atoms/05-heading/_heading.twig" with {
+        heading: {
+          parent: base,
+          base: 'sub-title',
+          level: 2,
+          content: content.field_sub_title
+        }
+      } only %}
+
+			<div {{ bem('content', [], base) }}>
+				{{ content|without('field_hero_image', 'field_sub_title') }}
+			</div>
+		</div>
+	</div>
+</article>
+
+
+{#
+<hr>
+{% set base = 'staff-listing' %}
+
+
+{% include "@molecules/00-card/_card.twig" with {
+  card: {
+    mods: [base],
+    background_image: {
+      content: content.field_hero_image
+    },
+    body: {
+      title: {
+        content: label,
+        heading_level: 1
+      }
+    }
+  }
+} only %}
+
+<hr> #}

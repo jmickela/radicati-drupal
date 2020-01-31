@@ -1,0 +1,11 @@
+{% set base = 'card-grid' %}
+
+<div {{ bem(base) }}>
+  <div class="row">
+    {% for row in card_grid.rows %}
+      <div class="{{ card_grid.col_classes|default("col--12 col-md-4") }}">
+        {{ row.content }}
+      </div>
+    {% endfor %}
+  </div>
+</div>

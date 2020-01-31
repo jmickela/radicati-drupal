@@ -1,0 +1,10 @@
+@import "../../variables";
+
+.social-share {
+  @include rem('margin-bottom', 44px);
+  text-align: center;
+}
+
+.iconlink--social-link {
+  @include rem('margin', 0 3px);
+}

@@ -1,0 +1,15 @@
+{% set base = 'related-press' %}
+
+<div class="row">
+  <div class="col--12">
+    <section {{ bem(base) }} aria-labelledby="related-press">
+      <h3 id="related-press" {{ bem('title', [], base) }}>{{ "Relevant Press Releases"|t }}</h3>
+      {% for row in rows %}
+        <div {{ bem('item', [], base)}} >
+          {{- row.content -}}
+        </div>
+      {% endfor %}
+    </section>
+  </div>
+</div>
+

@@ -1,0 +1,10 @@
+{#
+  Used by the menu item extras module. Currently this is used for mega menus.
+#}
+{% include "@molecules/60-mega-menu/_mega-menu.twig" with {
+  menu: {
+    mods: ['mega-menu'],
+    items: items,
+    attributes: attributes
+  }
+} only %}

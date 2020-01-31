@@ -1,0 +1,152 @@
+$container-width: 1200/16+em;
+$gutter-width: 15/16+em;
+
+$container-max-widths: (
+  sm: 540/16 * 1em,
+  md: 720/16 * 1em,
+  lg: 960/16 * 1em,
+  xl: 1215/16 * 1em
+);
+
+$breakpoints: (
+  '': 0,
+  sm: 576/16 * 1em,
+  md: 768/16 * 1em,
+  lg: 992/16 * 1em,
+  xl: 1200/16 * 1em
+);
+
+// Breakpoints
+$breakpoint-sm: (576/16) * 1em;
+$breakpoint-md: (768/16) * 1em;
+$breakpoint-lg: (992/16) * 1em;
+$breakpoint-xl: (1200/16) * 1em;
+$breakpoint-xxl: (1400/16) * 1em;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576/16 * 1em,
+  md: 768/16 * 1em,
+  lg: 992/16 * 1em,
+  xl: 1200/16  * 1em
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1215px
+);
+
+// $breakpoints: ('': 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px);
+
+// // Breakpoints
+// $breakpoint-sm: 576px;
+// $breakpoint-md: 768px;
+// $breakpoint-lg: 992px;
+// $breakpoint-xl: 1200px;
+
+// $grid-breakpoints: (xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px);
+
+$header-mobile-breakpoint: $breakpoint-lg;
+$footer-menu-wrap-breakpoint: 1300/16+em;
+
+$fontello-font-path : "../fonts";
+$fontello-font-name : "fontello";
+
+// $debug: false;
+
+@import "00-base/mixins/rem";
+@import "00-base/mixins/breakpoints";
+//@import "00-base/mixins/util";
+@import "00-base/mixins/flexbox";
+@import "00-base/mixins/layout";
+@import "00-base/mixins/button";
+@import "00-base/mixins/fontello";
+@import "00-base/mixins/polyfluid";
+@import "00-base/mixins/breakpoint/breakpoint.scss";
+@import "00-base/mixins/inline-svg/inline-svg";
+
+// $color--red: #ef404d;
+// replaced with official aclu color
+$color--red: #ef404e;
+$color--dark-red: #e21220;
+$color--onyx-red: #681b40;
+
+$color--blue: #0055aa;
+$color--alt-blue: #114c94;
+$color--light-blue: #3c79b9;
+$color--lighter-blue: #568fc7;
+$color--alt-lighter-blue: #5591cc;
+$color--another-blue: #80aad5;
+$color--light-azure: #92d6e3;
+$color--jordy-blue: #84add7;
+$color--rosalee-blue: #b6e1e9;
+$color--soys-twitter-blue: #3fcafd;
+
+$color--light-orange: #fbb416;
+// $color--light-yellow: #ffdf69;
+// replaced with official aclu color
+$color--light-yellow: #ffe06a;
+$color--jason-yellow: #fede72;
+
+$color--light-green: #8dcead;
+$color-alt-dark-gray: #463f3d;
+$color--medium-gray: #595959;
+$color--dark-gray: #3c3734;
+$color--light-gray: #939393;
+$color--blackish: #1a1a26;
+
+$color-very-light-gray: #ececec;
+$color--pale-lilac: #e4e4e5;
+$color--pale-grey: #f4f4f6;
+$color--light-blue-grey: #cdcdd2;
+
+$color--cocoa: black;
+$color--dark-grey-blue: black;
+$color--slate-grey: black;
+
+
+$color--primary: black;
+$color--secondary: #aeaeae;
+$color--text-primary: $color--blackish;
+
+
+// Fonts
+$font--gt-america: GTAmerica, sans-serif;
+$font--century-school: CenturySchool, Georgia, "Times New Roman", serif;
+
+$font--roboto: Roboto, sans-serif;
+
+
+$font--proxima-nova: 'proxima-nova', sans-serif;
+$font--font-awesome: 'Font Awesome 5 Pro';
+
+$font--primary: $font--roboto;
+$font--secondary: $font--gt-america;
+
+
+// This is used so the height of the header and the padding-top on the body are synced :)
+$fixed-header-height: 90px;
+
+// These are used so that the bottom of the header ends up in the right place
+$breadcrumb-height: 32px;
+$margin-above-unscrolled-logo: 10px;
+$margin-for-scrolled-logo: 10px;
+
+// These are used to keep the header logo and breadcrumbs properly spaced
+$header-margin-md: 60px;
+$header-margin-sm: 45px;
+$header-margin-xs: 30px;
+
+
+// I need this available across multiple scss files...
+$navmenu-line-height: 20px;

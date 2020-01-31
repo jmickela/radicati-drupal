@@ -1,0 +1,29 @@
+@import "../../variables";
+
+a {
+  @include rem('letter-spacing', 0.3px);
+  font-family: $font--roboto;
+  color: $color--blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+a.tag {
+  @include rem('font-size', 16px);
+  font-family: $font--gt-america;
+  color: $color--blue;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.read-more {
+  @include rem('font-size', 20px);
+  color: $color--blue;
+  letter-spacing: 0;
+  font-family: $font--gt-america;
+  font-stretch: condensed;
+  font-weight: bold;
+}

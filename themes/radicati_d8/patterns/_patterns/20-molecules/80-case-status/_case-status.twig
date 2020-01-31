@@ -1,0 +1,8 @@
+{% set base = 'case-status' %}
+
+<div {{ bem(base) }}>
+  <span {{ bem('label', [], base) }}>{{ "Status: "|trans }}</span>
+  <div {{ bem('status', [key], base) }}>
+    {{ item.content }}
+  </div>
+</div>

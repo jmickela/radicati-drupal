@@ -1,0 +1,28 @@
+@import "../../variables";
+
+blockquote {
+  @include rem('font-size', 22px);
+  margin: 0;
+  line-height: 1.54;
+  letter-spacing: 0.5px;
+  color: $color--lighter-blue;
+  font-style: italic;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 85%;
+
+  quotes: "“""”";
+
+  @include breakpoint($breakpoint-sm) {
+    @include rem('font-size', 26px);
+    max-width: 100%;
+  }
+
+  p:first-child:before {
+    content: open-quote;
+  }
+
+  p:last-child:after {
+    content: close-quote;
+  }
+}

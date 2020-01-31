@@ -1,0 +1,18 @@
+{% include "@templates/32-staff/_staff.twig" with {
+  type: 'board-member',
+  hide_image: node.field_hide_image.0.value,
+  promoted: promoted,
+  sticky: sticky,
+  published: published,
+  view_mode: view_mode,
+  content_type: node.bundle|clean_class,
+  title: label,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  page: page,
+  url: url,
+  label: label,
+  content: content,
+  content_attributes: content_attributes,
+  attributes: attributes,
+} only %}

@@ -1,0 +1,39 @@
+{% if content.field_image|render != null and content.field_image|render != '' %}
+  {% set header = {
+      image: {
+        content: content.field_image,
+        link: {
+          href: url
+        }
+      }
+    }
+  %}
+{% endif %}
+
+{% if content_type == 'legislation' %}
+  {% set created = null %}
+{% endif %}
+
+{% include "@molecules/00-card/_card.twig" with {
+  card: {
+    mods: ['vertical-listing-card'],
+    is_article: true,
+    header : header,
+    body: {
+      title: {
+        content: label,
+        link: {
+          href: url
+        }
+      },
+      label: created,
+      content: {
+        content: summary|striptags|trim|length > 400 ? summary|striptags|trim|truncate(400) ~ '...' : summary|trim,
+        read_more: {
+          href: url,
+          content: "Read More"|trans
+        }
+      }
+    }
+  }
+} only %}

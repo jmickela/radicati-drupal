@@ -1,0 +1,16 @@
+{% include "@templates/20-listing-page/_listing-page.twig" with {
+  promoted: promoted,
+  sticky: sticky,
+  published: published,
+  view_mode: view_mode,
+  content_type: node.bundle|clean_class,
+  title: label,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  page: page,
+  url: url,
+  label: label,
+  content: content,
+  content_attributes: content_attributes,
+  attributes: attributes,
+} only %}

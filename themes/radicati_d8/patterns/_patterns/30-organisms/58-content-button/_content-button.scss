@@ -1,0 +1,25 @@
+@import "../../variables";
+
+.button--content-button {
+  @include rem('margin-bottom', 20px);
+  position: relative;
+
+  &.button--align-left {
+    left: 0%;
+  }
+
+  &.button--align-center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.button--align-right {
+    left: 100%;
+    transform: translateX(-100%);
+  }
+}
+
+
+.paragraph--type--content-button {
+  position: relative;
+}

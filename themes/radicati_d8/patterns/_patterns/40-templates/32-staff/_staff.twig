@@ -1,0 +1,21 @@
+{% set base = 'staff-page' %}
+
+<article {{ bem(base, [type]) }}>
+  {% if hide_image != true %}
+    <div {{ bem('image-wrapper', [], base) }}>
+      {{ content.field_image }}
+    </div>
+  {% endif %}
+
+  <div {{ bem('title', [], base) }}>
+    <h1>{{ label }}</h1>
+  </div>
+
+  <div {{ bem('job-title', [], base) }}>
+    {{ content.field_job_title }}
+  </div>
+
+  <div {{ bem('content', [], base) }}>
+    {{ content|without('field_job_title', 'field_image') }}
+  </div>
+</article>

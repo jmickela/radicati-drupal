@@ -1,0 +1,8 @@
+{% for key, item in items %}
+  <span{{ attributes }}>
+    {% include "@molecules/80-case-status/_case-status.twig" with {
+      item: item,
+      key: null
+    } only %}
+  </span>
+{% endfor %}

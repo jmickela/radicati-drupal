@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.basic-template__author-info {
+  font-weight: bold;
+  @include rem('margin-top', -20px);
+  @include rem('margin-bottom', 10px);
+  text-align: center;
+}
+
+.blog-author {
+  display: inline;
+}
+
+.blog-author__twitter-link {
+  background-color: $color--soys-twitter-blue;
+  color: white;
+  @include rem('border-radius', 3px);
+  @include rem('font-size', 14px);
+  font-weight: bold;
+  // @include rem('margin-right', 1ex);
+  margin-right: 1ex;
+  @include rem('padding', 7px 10px);
+}

@@ -1,0 +1,55 @@
+@import "../../variables";
+
+.card--highlight {
+
+  //@include rem('width', 356px);
+  @include rem('margin', 0 auto 50px auto);
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('max-width', 350px);
+    @include rem('margin', 0 auto 20px auto);
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    //@include rem('height', 356px);
+  }
+
+  .card__body {
+    position: unset;
+  }
+
+  .card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+
+.card--highlight .card__title {
+  @include rem('font-size', 20px);
+  @include rem('padding', 20px 10px 20px 24px);
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+
+  font-family: $font--gt-america;
+  font-stretch: condensed;
+  font-weight: bold;
+
+  background-color: rgba($color--light-blue, 0.9);
+  color: white;
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('padding', 20px 10px 20px 24px);
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    @include rem('padding', 20px 10px 0 24px);
+    @include rem('height', 94px);
+  }
+}

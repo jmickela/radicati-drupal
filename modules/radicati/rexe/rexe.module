@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Contains rexe.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rexe_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rexe module.
+    case 'help.page.rexe':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module that enhancements the Drupal 8 Editor eXperience.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+
+function rexe_form_node_form_alter(&$form, FormStateInterface $form_state,  $form_id) {
+
+  // Reorganize the drupal node form to put the publish checkbox and save/delete buttons together in the right bar.
+  $form['status']['#group'] = 'actions';
+  $form['status']['#weight'] = -1000;
+  $form['actions']['submit']['#weight'] = 15;
+
+  $actions_group = [
+    '#type' => 'details',
+    '#title' => t('Publishing'),
+    '#optional' => FALSE,
+    '#open' => TRUE,
+    '#group' => 'advanced',
+    '#weight' => -100,
+    '#attributes' => [
+      'class' => ['node-form-options']
+    ],
+    '#attached' => [
+      'library' => ['node/drupal.node'],
+    ],
+  ];
+
+  $form['actions'] = array_merge($form['actions'], $actions_group);
+
+  // Put promotion options right below the publishing options
+  $form['options']['#weight'] = -90;
+
+
+  // Move taxonomy fields to a taxonomy section in the right bar.
+
+  // TODO: automatically move all taxonomy fields to the sidebar!
+  $form['taxonomy'] = [
+    '#type' => 'details',
+    '#title' => t('Taxonomy'),
+    '#group' => 'advanced',
+    '#attributes' => [
+      'class' => ['node-form-options']
+    ],
+    '#attached' => [
+      'library' => ['node/drupal.node'],
+    ],
+    '#weight' => -80,
+    '#optional' => TRUE,
+    '#open' => TRUE,
+  ];
+
+  // Move the languages settings to the right-hand column
+  $form['field_category']['#group'] = 'taxonomy';
+  $form['field_resource_type']['#group'] = 'taxonomy';
+  $form['field_topics']['#group'] = 'taxonomy';
+  $form['field_location']['#group'] = 'taxonomy';
+  $form['field_tags']['#group'] = 'taxonomy';
+  $form['field_display_date_revised']['#group'] = 'taxonomy';
+
+  return $form;
+}

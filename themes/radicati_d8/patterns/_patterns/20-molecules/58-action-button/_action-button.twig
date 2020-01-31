@@ -1,0 +1,18 @@
+{% set base = 'action-button' %}
+{% set mods = action_button.mods ? action_button.mods : [] %}
+
+
+<aside {{ bem(base, mods) }}>
+  {% include "@molecules/00-card/_card.twig" with {
+    card: {
+      mods: ['action-button'],
+      link: action_button.link,
+      background_image: {
+        content: action_button.image
+      },
+      body: {
+        title: action_button.title,
+      }
+    }
+  } only %}
+</aside>

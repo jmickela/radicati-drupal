@@ -1,0 +1,14 @@
+{% set base = 'dropdownsearch' %}
+
+
+<div {{ bem(base) }}>
+  <a href="/search" {{ bem('toggle', null, base)}} aria-label='{{ "Show Search"|trans }}'>
+    <i class='icon icon-search'></i>
+  </a>
+  <div {{ bem('dropdown', null, base)}}>
+    <div {{ bem('form-wrapper', null, base)}}>
+      <div {{ bem('form-preface', null, base)}}>{{ 'Search'|trans }}</div>
+      {{ form }}
+    </div>
+  </div>
+</div>

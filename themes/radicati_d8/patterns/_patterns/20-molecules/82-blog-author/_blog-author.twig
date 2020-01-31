@@ -1,0 +1,23 @@
+{{ attach_library('radicati_d8/new-window') }}
+
+{% set base = 'blog-author' %}
+{% set mod = mod|default('first-author') %}
+
+<div {{ bem(base) }}>
+  <span {{ bem('name', [mod], base) }}>{{ author.name }}</span>
+  {% if author.twitter %}
+    {% include '@atoms/10-link/_link.twig' with {
+      link: {
+        href: 'https://twitter.com/intent/follow?region=follow_link&tw_p=followbutton&screen_name=' ~ author.twitter,
+        content: '@' ~ author.twitter,
+        base: 'twitter-link',
+        mods: [mod],
+        parent: base,
+        classes: ['twitter-follow-button', 'icon-twitter'],
+        attributes: {
+          'target': '_new'
+        }
+      }
+    } only %}
+  {% endif %}
+</div>

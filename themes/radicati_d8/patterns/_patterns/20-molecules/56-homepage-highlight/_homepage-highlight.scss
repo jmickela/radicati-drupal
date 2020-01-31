@@ -1,0 +1,56 @@
+@import "../../variables";
+
+.card--homepage-highlight {
+  @include rem('min-height', 318px);
+  @include rem('margin-bottom', 30px);
+  // padding: 10vw;
+  @include poly-fluid-rem('padding', (20em: 30px, $breakpoint-sm: 55px, 47.9em: 55px, $breakpoint-md: 30px));
+
+  background-image: url(../images/dark-stripe.png);
+  background-repeat: repeat;
+
+  @include breakpoint($breakpoint-lg) {
+    // @include rem('min-height', 318px);
+    @include rem('padding', 31px 10px 10px 45.6px);
+  }
+
+  .card__label {
+    @include rem('font-size', 20px);
+    @include rem('padding', 2px 4px 4px 4px);
+    @include rem('margin-bottom', 13px);
+    line-height: 0.8;
+    letter-spacing: 0;
+    font-family: $font--gt-america;
+    font-weight: bold;
+    font-stretch: condensed;
+    display: inline-block;
+    color: white;
+    background-color: $color--dark-red;
+    text-transform: uppercase;
+  }
+
+  .card__title {
+    @include rem('font-size', 30px);
+    @include rem('letter-spacing', 0.1px);
+    line-height: 1.43;
+
+    max-width: 85%;
+    font-family: $font--gt-america;
+    font-weight: bold;
+    font-stretch: condensed;
+    color: white;
+  }
+
+  .card__link {
+    @include rem('margin-bottom', 25px);
+  }
+
+  .button {
+    @include rem('padding-left', 53px);
+    @include rem('padding-right', 53px);
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{%
+  set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% include "@organisms/20-related-content/_related-content.twig" with {
+    related_content: {
+      title_prefix: title_prefix,
+      title_suffix: title_suffix,
+      title: label,
+      content: content
+    }
+  } only %}
+</div>

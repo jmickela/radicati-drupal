@@ -1,0 +1,11 @@
+@import "../../../variables";
+
+button, input[type=button], input[type=cancel] {
+  @include rem('font-size', 20px);
+  @include rem('padding', 14px 0 15px 0);
+  font-weight: bold;
+  width: 100%;
+  background-color: $color--blue;
+  text-transform: uppercase;
+  text-align: center;
+}

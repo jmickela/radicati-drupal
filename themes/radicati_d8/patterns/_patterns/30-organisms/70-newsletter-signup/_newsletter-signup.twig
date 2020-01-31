@@ -1,0 +1,61 @@
+{% set base = 'newsletter-signup' %}
+
+<aside {{ bem(base) }} aria-label="{{ "Newsletter Signup and Social Media Links"|trans }}">
+  <div {{ bem('inner', [], base) }}>
+    {% include "@atoms/05-heading/_heading.twig" with {
+      heading: {
+        base: "title",
+        parent: base,
+        classes: ['white'],
+        level: 2,
+        content: newsletter_signup.title
+      }
+    } only %}
+
+    {% include "@atoms/05-heading/_heading.twig" with {
+      heading: {
+        base: "subtitle",
+        parent: base,
+        classes: ['white'],
+        level: 3,
+        content: newsletter_signup.subtitle
+      }
+    } only %}
+
+    <div {{ bem('form-wrapper', [], base) }}>
+      {{ newsletter_signup.form }}
+    </div>
+
+    <div {{ bem('social-links', [], base) }}>
+      <h3 class="visually-hidden">{{ "Social Media Links"|trans }}</h3>
+      {% include "@atoms/18-social-link/_social-link.twig" with {
+        sociallink: {
+          href: "https://www.facebook.com/aclu.norcal",
+          title: "Keep up with us on Facebook -- New Window"|trans
+        }
+      } only %}
+
+      {% include "@atoms/18-social-link/_social-link.twig" with {
+        sociallink: {
+          href: "https://www.twitter.com/aclu_norcal",
+          title: "Follow us on Twitter -- New Window"|trans
+        }
+      } only %}
+
+      {% include "@atoms/18-social-link/_social-link.twig" with {
+        sociallink: {
+          href: "https://www.instagram.com/aclu_norcal",
+          title: "View our Instagram -- New Window"|trans
+        }
+      } only %}
+
+      {% include "@atoms/18-social-link/_social-link.twig" with {
+        sociallink: {
+          href: "https://medium.com/@ACLU_NorCal",
+title: "Follow us on Medium -- New Window"|trans
+
+        }
+      } only %}
+    </div>
+  </div>
+</aside>

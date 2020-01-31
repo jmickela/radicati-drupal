@@ -1,0 +1,59 @@
+@import "variables";
+
+.site-header {
+  ul.menu.menu--secondary-navigation {
+    background-color: $color--lighter-blue;
+    display: none;
+    flex: 1 0 auto;
+
+    font-stretch: condensed;
+    font-weight: bold;
+    justify-content: space-between;
+    margin: 0 0 0 auto;
+    @include rem('font-size', 14px);
+    @include rem('padding', 6px 20px);
+    @include rem('max-width', 500px);
+
+    @include breakpoint($header-mobile-breakpoint) {
+      display: flex;
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      @include rem('font-size', 17px);
+      @include rem('padding', 6px 60px 6px 20px);
+      max-width: none;
+    }
+
+    @include breakpoint($breakpoint-xxl) {
+      @include rem('font-size', 18px);
+      @include rem('padding', 6px 116px 6px 20px);
+      max-width: none;
+    }
+
+
+    a {
+      font-family: $font--gt-america;
+      transition: opacity 250ms ease;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    li.menu__menu-item {
+      @include breakpoint($header-mobile-breakpoint) {
+        @include rem('margin', 0 13px);
+      }
+
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
+      }
+    }
+
+    // just in case
+    ul.sub-menu {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "../../variables";
+
+.staff-page__title {
+  @include rem('margin-bottom', 8px);
+}
+
+.staff-page__image-wrapper {
+  @include rem('margin', 0 auto 51px);
+  @include rem('width', 373px);
+
+  @include breakpoint($breakpoint-md) {
+    @include rem('margin-left', 87px);
+    margin-right: 0;
+    float: right;
+  }
+}
+
+.staff-page__job-title {
+  @include rem('font-size', 16px);
+  @include rem('margin-bottom', 20px);
+  font-family: $font--gt-america;
+  font-stretch: condensed;
+  text-transform: uppercase;
+  color: $color--medium-gray;
+}
+
+.staff-page__content {
+  @include rem('font-size', 18px);
+  @include rem('letter-spacing', 0.3px);
+  @include rem('margin-bottom', 64px);
+  line-height: 1.67;
+  color: $color--blackish;
+}

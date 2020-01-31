@@ -1,0 +1,79 @@
+@import "variables";
+
+
+#page-content #block-aclunc-system-main .view .view-filters form.views-exposed-form,
+.path-search #page-content div#block-search-results-exposed-filter form {
+  @include rem('margin', 45px 0);
+  max-width: 100%;
+
+  .form--inline {
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+
+    .form-item {
+      @include rem('margin', 20px 0);
+    }
+
+    .form-actions {
+      flex: 0 1 auto;
+      @include rem('margin', 16px auto);
+      width: auto;
+
+      @include breakpoint($breakpoint-md) {
+        @include rem('margin', 16px 0);
+      }
+    }
+
+    input[type='submit'] {
+      @include rem('margin', 4px 0);
+    }
+
+    .form-item,
+    .form-actions {
+      margin-top: 0;
+    }
+  }
+}
+
+#page-content #block-aclunc-system-main .view .view-filters form.views-exposed-form {
+  .form--inline {
+
+    @include breakpoint($breakpoint-md) {
+      flex-wrap: nowrap;
+      justify-content: center;
+    }
+
+    .form-item {
+
+      @include breakpoint($breakpoint-md) {
+        @include rem('max-width', 400px);
+
+        &:nth-of-type(2) {
+          @include rem('margin-right', 10px);
+        }
+      }
+    }
+  }
+}
+
+
+
+.path-search #page-content div#block-search-results-exposed-filter form {
+  .form--inline {
+    @include breakpoint($breakpoint-lg) {
+      flex-wrap: nowrap;
+      justify-content: center;
+    }
+
+    .form-item {
+      @include breakpoint($breakpoint-lg) {
+        // @include rem('max-width', 400px);
+
+        &:nth-of-type(4) {
+          @include rem('margin-right', 10px);
+        }
+      }
+    }
+  }
+}

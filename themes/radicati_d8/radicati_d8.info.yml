@@ -1,0 +1,47 @@
+name: Radicati
+type: theme
+description: "A starter theme made with Rootid's pattern library Radicati."
+package: rootid
+core: 8.x
+logo: dist/images/logo.svg
+libraries:
+  - radicati_d8/global-styles
+  - radicati_d8/mega-menu
+  - radicati_d8/site-header
+  - radicati_d8/hamburger
+  - radicati_d8/header
+
+base theme: classy
+
+regions:
+  site_message: Site Message
+  header_branding: Header Branding
+  secondary_navigation: Secondary Navigation
+  primary_navigation: Primary Navigation
+  off_canvas: Off-Canvas
+  system_help: System Help/Message
+  content: Content
+  post_content: Post Content
+  pre_footer_one: Pre-Footer One
+  pre_footer_two: Pre-Footer Two
+  footer_branding: Footer Branding
+  footer: Footer
+  copyright: Copyright
+
+
+component-libraries:
+  atoms:
+    paths:
+      - patterns/_patterns/10-atoms
+  molecules:
+    paths:
+      - patterns/_patterns/20-molecules
+  organisms:
+    paths:
+      - patterns/_patterns/30-organisms
+  templates:
+    paths:
+      - patterns/_patterns/40-templates
+  pages:
+    paths:
+      - patterns/_patterns/50-pages

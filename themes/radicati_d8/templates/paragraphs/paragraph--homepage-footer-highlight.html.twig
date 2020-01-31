@@ -1,0 +1,12 @@
+{% extends "paragraph.html.twig" %}
+
+{% block content %}
+  {% include "@molecules/56-homepage-highlight/_homepage-highlight.twig" with {
+    highlight: {
+      href: paragraph.field_link.0.url,
+      title: content.field_title,
+      label: content.field_label,
+      button_label: paragraph.field_link.0.value.title
+    }
+  } only %}
+{% endblock %}

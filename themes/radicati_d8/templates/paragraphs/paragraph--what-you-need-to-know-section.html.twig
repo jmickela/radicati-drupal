@@ -1,0 +1,18 @@
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]
+%}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% include "@organisms/80-need-to-know-section/_need-to-know.twig" with {
+      title: content.field_title,
+      accordion_items: content.field_accordion_items,
+      related_content_title: content.field_content_links_title,
+      related_content: paragraph.field_content_links
+    } only %}
+  </div>
+{% endblock paragraph %}

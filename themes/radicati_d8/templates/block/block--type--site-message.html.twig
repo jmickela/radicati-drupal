@@ -1,0 +1,17 @@
+{% extends "block.html.twig" %}
+
+{% block content %}
+  {% if content['#block_content'].field_link.0.url and content['#block_content'].field_link.0.url != "" %}
+    {% set url = content['#block_content'].field_link.0.url %}
+  {% else %}
+    {% set url = null %}
+  {% endif %}
+
+
+  {% include "@organisms/60-site-message/_site-message.twig" with {
+    title: content.field_text,
+    background: content.field_background_image,
+    background_image: site_message_background_image,
+    link: url
+  } only %}
+{% endblock %}

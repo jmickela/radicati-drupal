@@ -1,0 +1,85 @@
+@import "../../variables";
+
+.case-development {
+  @include rem('margin-bottom', 17px);
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint($breakpoint-md) {
+    @include rem('max-width', 800px);
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+  }
+}
+
+.case-development__status-wrapper {
+  @include rem('width', 186px);
+  @include rem('height', 60px);
+  @include rem('font-size', 20px);
+  @include rem('margin-right', 28px);
+  flex: 0 0 auto;
+  //@include rem('flex-basis', 186px);
+  font-family: $font--gt-america;
+  font-weight: bold;
+  font-stretch: condensed;
+
+  text-transform: uppercase;
+  color: white;
+  background-color: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include rem('margin-bottom', 15px);
+
+}
+
+.case-development__status-wrapper--ruling, .case-development__status-wrapper--approved {
+  background-color: $color--red;
+}
+
+.case-development__status-wrapper--update, .case-development__status-wrapper--passed {
+  background-color: $color--light-green;
+  color: black;
+}
+
+.case-development__status-wrapper--filing {
+  background-color: $color--light-azure;
+  color: black;
+}
+
+.case-development__status-wrapper--settled, .case-development__status-wrapper--signed {
+  background-color: $color--blue;
+}
+
+.case-development__status-wrapper--introduced {
+  background-color: black;
+  color: white;
+}
+
+.case-development__data {
+  @include rem('margin-top', 20px);
+
+  @include breakpoint($breakpoint-md) {
+    @include rem('margin-top', -4px);
+  }
+}
+
+.case-development__date {
+  @include rem('margin-bottom', -4px);
+}
+
+.case-development__date, .case-development__text {
+  @include rem('font-size', 20px);
+  font-family: $font--gt-america;
+  color: black;
+  letter-spacing: 0;
+  font-weight: bold;
+  font-stretch: condensed;
+
+  p {
+    @include rem('margin-bottom', 10px);
+  }
+}

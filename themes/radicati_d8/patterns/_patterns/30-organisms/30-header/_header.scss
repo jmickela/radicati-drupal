@@ -1,0 +1,593 @@
+@import "../../variables";
+
+$sticky-transition: all 200ms ease;
+
+#site-header {
+  @include rem('margin-bottom', 24px);
+
+  position: relative;
+
+  .site-logo-affix {
+    @include rem('max-width', 360px);
+    margin: 0 auto;
+    display: block;
+
+    svg {
+      fill: white;
+      @include rem('margin-top', 6px);
+      @include rem('max-height', 50px);
+      @include rem('padding', 5px 0);
+    }
+  }
+
+  .site-logo {
+    display: none;
+  }
+
+
+  color: white;
+
+  //.header-branding {
+  //  display: flex;
+  //  align-items: center;
+  //  justify-content: center;
+  //}
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('height', 160px);
+
+    .header-branding {
+      //display: flex;
+    }
+
+    .site-logo-affix {
+      display: none;
+      max-width: 90vw;
+    }
+
+    .site-logo {
+      display: block;
+    }
+  }
+
+  a {
+    color: white;
+  }
+
+  .hamburger {
+    z-index: 8;
+
+    &:focus {
+      outline: white auto 5px;
+    }
+  }
+}
+
+.region-header-branding {
+  display: none;
+
+  @include breakpoint($header-mobile-breakpoint) {
+    display: block;
+    // flex: 1 1 auto;
+  }
+}
+
+//.header-branding,
+//.region-header-branding,
+//.region-header-branding div,
+//.region-header-branding a,
+//.region-header-branding svg,
+//.site-logo-affix {
+//  height: 100%;
+//}
+
+.header-branding {
+  width: 100%;
+  text-align: center;
+  @include rem('margin-left', 60px);
+  @include rem('padding-right', 20px);
+
+
+  @include breakpoint($breakpoint-sm) {
+    // margin-left: unset;
+    padding-right: 0;
+  }
+
+  @include breakpoint($breakpoint-md) {}
+
+  @include breakpoint($breakpoint-lg) {
+    display: block;
+    @include rem('width', 142px);
+    @include rem('margin-top', 31px);
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    @include rem('margin-left', 113px);
+  }
+
+}
+
+.header-navigation {
+  align-items: flex-end;
+  display: none;
+  flex: 1 0 auto;
+  flex-direction: column;
+  // @include rem('padding-left', 167px);
+
+  //@include poly-fluid-rem('padding-left', ($breakpoint-lg: 50px, $breakpoint-xl: 250px));
+
+  @include breakpoint($breakpoint-lg) {
+    display: flex;
+
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    // @include rem('padding-left', 167px);
+    //@include poly-fluid-rem('padding-left', ($breakpoint-xl: 150px, $breakpoint-xxl: 270px));
+  }
+
+  @include breakpoint($breakpoint-xxl) {
+    //@include rem('padding-left', 167px);
+  }
+}
+
+.site-header__inner {
+  display: flex;
+  flex-direction: row;
+  background-image: url(../images/stripe.png);
+  background-repeat: repeat;
+
+  transition: $sticky-transition;
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('height', 160px);
+  }
+}
+
+@include breakpoint($breakpoint-lg) {
+  /*
+      Styles for when the header is affixed, this will have to dip into MANY other things. Not sure how best to code this.
+      For now I feel like keeping all styles for this use case in one place is best.
+   */
+
+
+  nav.menu--mega-menu>ul.menu {
+    justify-content: flex-end;
+    transition: $sticky-transition;
+
+    >.menu__menu-item {
+      @include rem('padding', 0 16px);
+
+      @include breakpoint($breakpoint-xl) {
+        @include rem('padding', 0 18px);
+      }
+
+      @include breakpoint($breakpoint-xxl) {
+        @include rem('padding', 0 22px);
+      }
+    }
+  }
+
+  .site-header__inner.affixed {
+    @include rem('height', 85px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 15;
+
+    .site-logo {
+      display: none !important;
+    }
+
+    .site-logo-affix {
+      display: inline !important;
+      width: 100% !important;
+      margin: unset !important;
+
+      svg {
+        margin-top: 0 !important;
+      }
+    }
+
+    .header-branding {
+      @include rem('margin-top', 22px);
+      @include rem('width', 230px);
+
+
+      @include breakpoint($breakpoint-xl) {
+        @include rem('margin-left', 60px);
+      }
+
+    }
+
+    .header-navigation {
+      // justify-content: stretch;
+      //@include rem('padding-left', 20px);
+
+      // @include poly-fluid-rem('padding-left', ($breakpoint-lg: 50px, $breakpoint-xl: 250px));
+
+      // @include breakpoint($breakpoint-xl) {
+      //   @include poly-fluid-rem('padding-left', ($breakpoint-xl: 160px, $breakpoint-xxl: 250px));
+      // }
+
+      // @include breakpoint($breakpoint-xxl) {
+      //   @include rem('padding-left', 167px);
+      // }
+    }
+
+    nav.menu--mega-menu>ul.menu {
+      @include rem('padding-bottom', 11px);
+      transition: all 50ms ease;
+    }
+
+    nav.menu--mega-menu:after {
+      content: unset;
+    }
+
+    .region-secondary-navigation {
+      @include rem('flex', 0 0 36px);
+      display: flex;
+    }
+
+    #block-secondarynavigation {
+      display: flex;
+    }
+
+    .region-primary-navigation {
+      @include rem('flex', 1 0 51px);
+      height: unset;
+      @include rem('max-width', 705px);
+      padding-top: 0;
+
+      @include breakpoint($breakpoint-xl) {
+        @include rem('max-width', 870px);
+      }
+
+      @include breakpoint($breakpoint-xxl) {
+        @include rem('max-width', 945px);
+      }
+
+      &::after {
+        display: none;
+      }
+
+      // @include breakpoint($breakpoint-xl) {
+      //   @include rem('max-width', 854px);
+      // }
+
+      // @include breakpoint($breakpoint-xxl) {
+      //   @include rem('max-width', 1050px);
+      // }
+
+      nav.menu--mega-menu {
+
+        >ul.menu {
+          @include rem('font-size', 14px);
+          @include rem('padding', 3px 20px 3px 8px);
+
+          @include breakpoint($breakpoint-xl) {
+            @include rem('font-size', 17px);
+            @include rem('padding', 6px 26px 6px 30px);
+          }
+
+          @include breakpoint($breakpoint-xxl) {
+            @include rem('font-size', 18px);
+          }
+        }
+      }
+    }
+  }
+
+  body.toolbar-tray-open {
+    .site-header__inner.affixed {
+      top: 39px;
+    }
+  }
+
+  body.toolbar-horizontal {
+    .site-header__inner.affixed {
+      top: 39px;
+    }
+  }
+
+  body.toolbar-tray-open.toolbar-horizontal {
+    .site-header__inner.affixed {
+      top: 78px;
+    }
+  }
+
+  body.off-canvas-open {
+    .site-header__inner.affixed {
+      transition-duration: $offcanvas-transition-time;
+      margin-left: $offcanvas-width;
+    }
+  }
+}
+
+.region-secondary-navigation {
+  max-width: 90%;
+  // margin-left: auto;
+}
+
+button.hamburger {
+  position: absolute;
+  @include rem('left', 20px);
+  top: 50%;
+  transform: translateY(-50%);
+
+  @include breakpoint($breakpoint-sm) {
+    @include rem('left', 30px);
+  }
+
+  @include breakpoint($breakpoint-lg) {
+    display: none;
+  }
+}
+
+
+.region-primary-navigation {
+  $shadow-height: 7px;
+  $shadow-height-rem: $shadow-height/($shadow-height * 0 + 10)+rem;
+
+  align-items: center;
+  align-self: stretch;
+  background-color: $color--jordy-blue;
+  display: flex;
+  flex-wrap: wrap;
+  // flex-wrap: nowrap;
+  margin-left: auto;
+  margin-right: 0;
+  @include rem('max-width', 755px);
+  // @include rem('height', 55px);
+  @include rem('padding-top', $shadow-height);
+  width: 100%;
+  transition: all 50ms ease;
+
+  @include breakpoint($breakpoint-xl) {
+    // @include rem('height', 45px);
+    @include rem('max-width', 860px);
+  }
+
+  @include breakpoint($breakpoint-xxl) {
+    @include rem('height', 55px);
+    @include rem('max-width', 1060px);
+  }
+
+  &::after {
+    align-self: flex-end;
+    content: " ";
+    display: block;
+    flex-basis: 100%;
+    position: relative;
+    @include rem('bottom', -$shadow-height);
+    @include rem('left', $shadow-height);
+    width: calc(100% - #{$shadow-height});
+    width: calc(100% - #{$shadow-height-rem});
+    @include rem('height', $shadow-height);
+    background: #5591cc;
+  }
+
+  nav {
+    // flex: 0 0 calc(100% - 64px);
+    // flex: 0 0 calc(100% - 6.4rem);
+    flex: 1 0 calc(100% - 70px);
+    flex: 1 0 calc(100% - 7rem);
+
+    @include breakpoint($breakpoint-xl) {
+      // flex: 0 0 calc(100% - 104px);
+      // flex: 0 0 calc(100% - 10.4rem);
+      flex: 1 0 calc(100% - 110px);
+      flex: 1 0 calc(100% - 11rem);
+    }
+
+    @include breakpoint($breakpoint-xxl) {
+      // flex: 0 0 calc(100% - 160px);
+      // flex: 0 0 calc(100% - 16rem);
+      flex: 1 0 calc(100% - 170px);
+      flex: 1 0 calc(100% - 17rem);
+    }
+  }
+
+  #block-dropdownsearch {
+    display: none;
+    //position: static;
+    position: inherit;
+
+    @include breakpoint($breakpoint-lg) {
+      display: block;
+      @include rem('flex', 0 1 64px);
+      @include rem('max-width', 64px);
+      @include rem('padding-right', 20px);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      @include rem('flex', 0 1 104px);
+      @include rem('max-width', 104);
+      @include rem('padding-right', 104px);
+    }
+
+    @include breakpoint($breakpoint-xxl) {
+      @include rem('flex', 0 1 160px);
+      @include rem('max-width', 160px);
+      @include rem('padding-right', 116px);
+    }
+  }
+
+  .dropdownsearch {
+    position: inherit;
+    background: none;
+
+    @include rem('margin-top', 4px);
+    @include rem('line-height', 18px);
+
+    border-left: 1px solid white;
+
+    //display: flex;
+    //flex: 1 0 100%;
+    // @include rem('max-height', 45px);
+    // position: static;
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('padding-left', 22px);
+    }
+
+    @include breakpoint($breakpoint-xl) {
+      border-left: 3px solid white;
+    }
+  }
+
+  .dropdownsearch__toggle {
+    // display: flex;
+    background-color: $color--jordy-blue;
+    //flex: 1 0 auto;
+
+    // &::after {
+    //   content: " ";
+    //   display: block;
+    //   //position: absolute;
+    //   position: relative;
+    //   // bottom: -7px;
+    //   bottom: 0;
+    //   // left: 7px;
+    //   left: 0;
+    //   // width: calc(100% - 7px);
+    //   width: 100%;
+    //   height: 7px;
+    //   background: $color--alt-lighter-blue;
+    // }
+
+    i {
+      align-items: center;
+      //display: flex;
+      // @include rem('height', 38px);
+      // @include rem('height', 31px);
+      @include rem('font-size', 14px);
+      //justify-content: flex-start;
+      // @include rem('padding-bottom', 7px);
+      transition: opacity 250ms ease;
+      width: 100%;
+
+      @include breakpoint($breakpoint-xl) {
+        @include rem('font-size', 17px);
+      }
+
+      @include breakpoint($breakpoint-xxl) {
+        @include rem('font-size', 20px);
+        @include rem('padding-top', 3px);
+      }
+
+      &::before {
+        // width: 100%;
+      }
+    }
+
+    &:hover {
+      i {
+        // color: white;
+        //   border-color: $hover-color;
+        //   transition: all 250ms ease;
+        //   // color: $hover-color;
+        opacity: .7;
+      }
+    }
+  }
+
+  .dropdownsearch__dropdown {
+    align-items: flex-start;
+    background-color: rgba($color--alt-blue, .96);
+    @include rem('padding', 13px 20px 20px);
+
+    .dropdownsearch__form-wrapper {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      @include rem('max-width', 563px);
+    }
+
+    form {
+      display: flex;
+      margin: 0;
+      max-width: 100%;
+
+      .form-type-textfield {
+        align-items: center;
+        display: flex;
+        flex: 1 1 auto;
+        margin: 0;
+      }
+
+      input {
+        background-color: transparent;
+        border: none;
+        @include rem('height', 50px);
+
+        &[type='text'] {
+          border-bottom: 2px solid white;
+          color: white;
+
+          &:focus {
+            outline: white auto 5px;
+          }
+        }
+      }
+
+
+
+      label {
+        //display: none;
+      }
+    }
+
+    button {
+      background: none;
+      border: none;
+      height: unset;
+      margin: 0;
+      @include rem('padding', 30px 5px 2px 8px);
+      // transition: all 250ms ease;
+
+      i {
+        border-color: white;
+        border-radius: 50%;
+        border-style: solid;
+        @include rem('border-width', 2px);
+        @include rem('font-size', 14px);
+        @include rem('height', 23px);
+        @include rem('width', 23px);
+        transition: color 250ms ease, border-color 250ms ease, opacity 250ms ease;
+      }
+
+      &:hover {
+        // $hover-color: rgba(white, .8);
+
+        // color: $hover-color;
+
+
+        i {
+          color: white;
+          //   border-color: $hover-color;
+          //   transition: all 250ms ease;
+          //   // color: $hover-color;
+          opacity: .7;
+        }
+      }
+
+      &:focus,
+      &:active {
+        outline: white auto 5px;
+      }
+    }
+  }
+
+  .dropdownsearch__form-preface {
+    font-family: $font--gt-america;
+    @include rem('font-size', 20px);
+    font-stretch: condensed;
+    font-weight: bold;
+    @include rem('margin-right', 14px);
+    @include rem('padding-top', 30px);
+    text-transform: uppercase;
+  }
+
+}

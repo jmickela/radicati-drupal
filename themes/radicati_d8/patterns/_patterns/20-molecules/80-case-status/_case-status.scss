@@ -1,0 +1,30 @@
+@import "../../variables";
+
+.case-status {
+  display: inline-block;
+}
+
+.case-status__label {
+  @include rem('font-size', 14px);
+  color: $color--text-primary;
+}
+
+.case-status__status {
+  @include rem('padding', 5px 15px);
+  @include rem('font-size', 14px);
+  @include rem('margin-left', 10px);
+  display: inline-block;
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: $font--gt-america;
+  font-stretch: condensed;
+  color: white;
+  background-color: $color--red;
+}
+
+.case-status__status--active {
+  background-color: $color--red;
+  color: white;
+
+}

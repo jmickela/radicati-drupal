@@ -1,0 +1,12 @@
+.dropdown-search-form {
+    position: relative;
+}
+
+.dropdown-search-form input[type=submit], .inline-search-form input[type=submit]  {
+    display: none;
+}
+
+.dropdown-search-form button, .inline-search-form button  {
+    background: transparent;
+    border: none;
+}

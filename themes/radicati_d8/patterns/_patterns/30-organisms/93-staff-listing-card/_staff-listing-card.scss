@@ -1,0 +1,72 @@
+@import "../../variables";
+
+.card--staff-listing-card {
+  @include rem('margin-bottom', 40px);
+
+  .card__body {
+    @include rem('margin-bottom', 24px);
+    position: relative;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .card__content {
+      @include rem('font-size', 14px);
+      @include rem('padding', 0 47px 0 56px);
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      //align-items: center;
+      justify-content: center;
+
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $color--light-azure;
+      color: $color--dark-gray;
+
+      transition: top 600ms ease-in-out;
+
+      p.read-more {
+        @include rem('font-size', 16px);
+        font-stretch: condensed;
+        font-family: $font--gt-america;
+        font-weight: bold;
+        @include rem('margin-top', 10px);
+
+        &:after {
+          content: " >";
+          @include rem('font-size', 12px);
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .card__body .card__content {
+      top: 0;
+    }
+  }
+
+  .card__title {
+    @include rem('font-size', 20px);
+    font-family: $font--gt-america;
+    font-weight: bold;
+    font-stretch: condensed;
+    color: black;
+  }
+
+  .card__label {
+    @include rem('font-size', 16px);
+    color: $color--medium-gray;
+    font-family: $font--gt-america;
+    font-stretch: condensed;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+}

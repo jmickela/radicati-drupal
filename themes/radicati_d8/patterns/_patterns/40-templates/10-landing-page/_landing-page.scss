@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.landing-page .field--name-field-hero-image {
+  @include rem('margin-bottom', 25px);
+
+  img {
+    display: block;
+  }
+}
+
+.landing-page__content-row {
+  @include rem('margin-bottom', 40px);
+}
+
+
+.landing-page__title {
+  @include rem('margin', -7px 0 19px 0);
+  text-transform: uppercase;
+}
+
+.landing-page__content {
+  @include rem('font-size', 18px);
+  @include rem('letter-spacing', 0.3px);
+  @include rem('max-width', 740px);
+  line-height: 1.69;
+  font-family: $font--roboto;
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include rem('margin-bottom', 20px);
+  }
+}
+
+.landing-page__listing-row {
+  #content-listing-select {
+    // I'm doing this in _forms.scss, cause all the variables are already there...
+  }
+}

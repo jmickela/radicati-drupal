@@ -1,0 +1,119 @@
+global-styles:
+  version: 1.x
+  css:
+    theme:
+      dist/css/hip-styles.css: {}
+
+listing-page:
+  version: 1.x
+  js:
+    patterns/_patterns/40-templates/20-listing-page/listing-page.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+slider:
+  version: 1.x
+  css:
+    theme:
+      dist/libs/slick/slick.css: {}
+  js:
+    patterns/_patterns/30-organisms/25-slider/slider.js: {}
+    dist/libs/slick/slick.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+hamburger:
+  version: 1.x
+  js:
+    patterns/_patterns/10-atoms/70-hamburger/hamburger.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+site-header:
+  version: 1.x
+  js:
+    patterns/_patterns/30-organisms/30-header/header.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+social-share:
+  version: 1.x
+  js:
+    patterns/_patterns/30-organisms/10-social-share/social-share.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+accordion:
+  version: 1.x
+  js:
+    patterns/_patterns/30-organisms/55-accordion/accordion.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+dropdown-menu:
+  version: 1.x
+  js:
+    patterns/_patterns/20-molecules/28-menu/menu-dropdown.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+accessible-mega-menu:
+  version: 1.x
+  js:
+    dist/js/jquery-accessibleMegaMenu.js: {}
+  dependencies:
+    - core/jquery
+
+mega-menu:
+  version: 1.x
+  js:
+    patterns/_patterns/20-molecules/60-mega-menu/mega-menu-helper.js: {}
+  dependencies:
+    - core/jquery.once
+    - radicati_d8/accessible-mega-menu
+
+form-labels:
+  version: 1.x
+  js:
+    patterns/_patterns/10-atoms/61-formz/form-labels.js: {}
+  dependencies:
+    - core/jquery
+    # - core/jquery.once
+
+offcanvas-menu:
+  version: 1.x
+  js:
+    patterns/_patterns/30-organisms/15-off-canvas/off-canvas.js: {}
+  dependencies:
+    - core/jquery.once
+    - radicati_d8/accessible-mega-menu
+
+jquery-tabs:
+  version: 1.x
+  js:
+    patterns/_patterns/30-organisms/75-tabbed-listing/tabbed-listing.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.ui.tabs
+
+new-window:
+  version: 1.x
+  js:
+    patterns/_patterns/20-molecules/82-blog-author/_!new-window.js: {}
+  dependencies:
+    - core/jquery
+
+ie-svg:
+  version: 1.x
+  js:
+    patterns/_patterns/30-organisms/60-site-message/_ie-svg.js: {}
+  dependencies:
+    - core/jquery

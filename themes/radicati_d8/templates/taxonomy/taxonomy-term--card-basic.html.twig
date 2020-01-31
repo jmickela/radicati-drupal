@@ -1,0 +1,12 @@
+{% include "@molecules/50-cards/10-card1/00-card1.twig" with {
+  card: {
+    title_prefix: title_prefix,
+    title_suffix: title_suffix,
+    title: name,
+    link: url,
+    content: content|without('field_image'),
+    media: {
+      content: content.field_image
+    }
+  }
+} only %}

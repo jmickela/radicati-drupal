@@ -1,0 +1,125 @@
+<?php
+
+/**
+ * @file
+ * Contains radicati_views_addons.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\views\Views;
+
+/**
+ * Implements hook_help().
+ */
+function radicati_views_addons_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the radicati_views_addons module.
+    case 'help.page.radicati_views_addons':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Views addon for the Radicati theme made by Rootid. Includes things like row formatters.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+function radicati_views_addons_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $bundle = $paragraph->bundle();
+
+  $args = [
+    0 => 'all',
+    1 => 'all'
+  ];
+
+  if($bundle == 'listing_configuration') {
+
+    // Handle Selection Criteria
+    $content_types = [];
+    $terms = [];
+
+    $content_types_field = $paragraph->field_rlc_content_types->getValue();
+    $taxonomy_field = $paragraph->field_rlc_taxonomy_terms->getValue();
+    $layout_type = $paragraph->field_rlc_layout->getValue();
+
+    if(!empty($layout_type)) {
+      $layout_type = $layout_type[0]['value'];
+    }
+
+    if($layout_type == 'highlight_cards') {
+      $display = 'embed_1';
+    } elseif($layout_type == 'vertical_listing') {
+      $display = 'embed_2';
+    } else {
+      $display = 'embed_1';
+    }
+
+    foreach($content_types_field as $key => $val) {
+      $content_types[] = $val['target_id'];
+    }
+
+    foreach($taxonomy_field as $key => $val) {
+      $terms[] = $val['target_id'];
+    }
+
+    if(!empty($content_types)) {
+      $args[0] = implode('+', $content_types);
+    }
+
+    if(!empty($terms)) {
+      $args[1] = implode('+', $terms);
+    }
+
+    // Handle Sort Criteria
+
+    $sort_by = $paragraph->field_rlc_sort_by->getValue()[0]['value'];
+    $sort_order = $paragraph->field_rlc_sort_direction->getValue()[0]['value'];
+
+    $sort_options = [
+      'title' => [
+        'field' => 'title',
+        'table' => 'node_field_data',
+        'alias' => 'node_field_data_title'
+      ],
+      'created' => [
+        'field' => 'created',
+        'table' => 'node_field_data',
+        'alias' => 'node_field_data_created'
+      ],
+      'updated' => [
+        'field' => 'changed',
+        'table' => 'node_field_data',
+        'alias' => 'node_field_data_changed'
+      ],
+      'random' => [
+        'field' => '',
+        'table' => '',
+        'alias' => 'rand_'
+      ]
+    ];
+
+    // Generate the actual view
+    $view = Views::getView('radicati_listing_page_driver');
+    $view->setArguments($args);
+    $view->setDisplay($display);
+
+    $view->preExecute();
+
+    $query = $view->getQuery();
+    $query->addOrderBy($sort_options[$sort_by]['table'], $sort_options[$sort_by]['field'], $sort_order, $sort_options[$sort_by]['alias']);
+
+//    $query = $view->getRequest()->query;
+//    $query->set('order', $sort_by);
+//    $query->set('sort', $sort_order);
+
+
+    $view->execute();
+
+
+
+    $variables['listing'] = $view->buildRenderable($display, $args);
+
+ }
+}

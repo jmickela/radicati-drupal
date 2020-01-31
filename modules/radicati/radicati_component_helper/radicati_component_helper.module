@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains rootid_component_library_helper.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function radicati_component_helper_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rootid_component_library_helper module.
+    case 'help.page.radicati_component_helper':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module that provides some base functionality for the Rootid Component Library, which is used in themes made by Rootid.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function radicati_component_helper_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  if(!empty($build['#attached']) && !empty($build['#attached']['html_head_link'])) {
+    foreach ($build['#attached']['html_head_link'] as $key => $val) {
+      if ($val[0]['rel'] == 'revision') {
+        unset($build['#attached']['html_head_link'][$key]);
+      }
+    }
+  }
+}

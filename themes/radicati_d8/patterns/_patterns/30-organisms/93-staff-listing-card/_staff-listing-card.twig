@@ -1,0 +1,25 @@
+{% include "@molecules/00-card/_card.twig" with {
+  card: {
+    mods: ['staff-listing-card'],
+    is_article: true,
+    link: {
+      href: url
+    },
+    body: {
+      image: {
+        content: content.field_image
+      },
+      content: {
+        content: summary,
+        append: "<p class='read-more'>" ~ "Read More"|trans ~ "</p>"
+      }
+    },
+    footer: {
+      title: {
+        content: label
+      },
+      label: content.field_job_title
+    }
+  }
+} only %}
+

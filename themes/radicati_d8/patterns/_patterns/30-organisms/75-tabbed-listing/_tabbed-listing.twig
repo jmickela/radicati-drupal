@@ -1,0 +1,74 @@
+{{ attach_library('radicati_d8/jquery-tabs') }}
+{% set base='tabbed-listing' %}
+
+{# Default to the aclunc_listing_tab view, but allow an override #}
+{% set view = view|default('aclunc_listing_tab') %}
+
+{#
+  First, we need to get the referenced content types, split them into label/machine name pairs
+  and render the tabbed interface, then render the listing item view into tabs, each filtered by
+  the content type.
+
+  If the all tab is selected then we combine the content types (type1+type2+type3) and render the view
+  again into the all tab.
+
+  EASY PEASY!
+#}
+<section id="content-listing" {{ bem(base) }}>
+  {% if show__all_tab or items|length > 1 %}
+    <ul {{ bem('list', [], base) }}>
+      {% if show_all_tab %}
+        {% set all_items = [] %}
+        {% for item in items %}
+          {% set all_items = all_items|merge([item.entity.id]) %}
+        {% endfor %}
+
+        <li {{ bem('list-item', [], base) }}>
+          <a href="#listing-item-all" {{ bem('list-item-link', [], base) }}>{{ "All"|trans }}</a>
+        </li>
+      {% endif %}
+
+      {% for item in items %}
+        <li {{ bem('list-item', [], base) }}>
+          <a  {{ bem('list-item-link', [], base) }} href="#listing-item-{{ item.entity.id }}">{{ item.entity.label }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {# For Mobile  #}
+  {% if show__all_tab or items|length > 1 %}
+    <label for="content-listing-select">{{ "Select Type of Content"|trans }}</label>
+    <select id="content-listing-select" {{ bem('tabselect', [], base) }}>
+      {% if show_all_tab %}
+        {% set all_items = [] %}
+        {% for item in items %}
+          {% set all_items = all_items|merge([item.entity.id]) %}
+        {% endfor %}
+
+        <option value="0">
+          {{ "All"|trans }}
+        </option>
+      {% endif %}
+
+      {% for item in items %}
+        <option value="{{ show__all_tab ? loop.index + 1 : loop.index }}">
+          {{ item.entity.label }}
+        </option>
+      {% endfor %}
+    </select>
+  {% endif %}
+
+
+  {% if show_all_tab %}
+    <div id="listing-item-all">
+      {{ drupal_view(view, 'embed_1', all_items|join('+')) }}
+    </div>
+  {% endif %}
+
+  {% for item in items %}
+    <div id="listing-item-{{ item.entity.id }}">
+      {{ drupal_view(view, 'embed_1', item.entity.id) }}
+    </div>
+  {% endfor %}
+</section>

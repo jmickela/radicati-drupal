@@ -1,0 +1,16 @@
+{% embed "@atoms/10-link/_link.twig" with {
+  site_logo: site_logo,
+  link: {
+    base: 'site-logo',
+    href: path('<front>'),
+    attributes: {
+      title: 'ACLU of Northern California'|trans,
+      'aria-label': 'ACLU of Northern California Homepage'|trans
+    }
+  }
+} only %}
+  {% block link_content %}
+    {#    <img src="{{ site_logo }}" alt="{{ 'ACLU of Northern California Homepage'|t }}" />#}
+    {% include site_logo %}
+  {% endblock %}
+{% endembed %}

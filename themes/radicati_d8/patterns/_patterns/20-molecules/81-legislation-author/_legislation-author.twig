@@ -1,0 +1,6 @@
+{% set base = 'leg-author' %}
+
+<div {{ bem(base) }}>
+  <span {{ bem('label', [], base) }}>{{ "Author: "|trans }}</span>
+  <span {{ bem('author', [], base) }}>{{ item.content }}</span>
+</div>

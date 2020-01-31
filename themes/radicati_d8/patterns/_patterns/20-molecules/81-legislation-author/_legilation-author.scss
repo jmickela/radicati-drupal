@@ -1,0 +1,9 @@
+@import "../../variables";
+
+
+.leg-author {
+  // @include rem('font-size', 14px);
+  color: $color--text-primary;
+  display: inline-block;
+  font-family: $font--gt-america;
+}

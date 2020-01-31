@@ -1,0 +1,17 @@
+{{ attach_library('radicati_d8/accordion') }}
+
+{% set base = 'accordion' %}
+{% set mods = accordion.mods ? accordion.mods : [] %}
+
+{#
+ Specifically not using aria-controls here because it's not well supported, and when it is the interaction isn't smooth.
+#}
+
+<div {{ bem(base) }}>
+  <h3  {{ bem('label', mods, base) }}>
+    <button aria-expanded="false" {{ bem('button', [], base) }} {{ (accordion.id ? "aria-controls=\"accordion-" ~ accordion.id ~ "\"")|raw }}>{{ accordion.label }}</button>
+  </h3>
+  <div {{ (accordion.id ? "id=\"accordion-" ~ accordion.id ~ "\"")|raw }} {{ bem('content', [], base) }}  role="region" aria-hidden="true">
+    {{ accordion.content|raw }}
+  </div>
+</div>

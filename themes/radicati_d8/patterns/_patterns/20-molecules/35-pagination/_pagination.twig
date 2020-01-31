@@ -1,0 +1,44 @@
+{% set base = 'pager' %}
+
+{% if pagination.items|length > 1 %}
+  <nav {{ bem('pager') }} aria-labelledby="pagination-heading">
+    <h4 id="pagination-heading" class="visually-hidden">{{ 'Pagination'|t }}</h4>
+
+    <ul {{ bem('list', [], base) }}>
+
+      <li {{ bem('item', ['prev'], base) }}>
+        {% if pagination.current != 1 %}
+          <a href="{{ pagination.prev.href }}">{{ "Previous"|trans }}</a>
+        {% else %}
+          <span {{ bem('inactive', [], base) }}>{{ "Previous"|trans }}</span>
+        {% endif %}
+      </li>
+
+      {% for item_key, item_value in pagination.items %}
+        <li {{ bem('item', item_key == pagination.current ? ['active'] : null, base ) }}>
+          {% if pagination.current == item_key %}
+            {% set title = 'Current page'|t %}
+          {% else %}
+            {% set title = 'Go to page @key'|t({'@key': item_key}) %}
+          {% endif %}
+
+          {% if item_key == pagination.current %}
+            <span {{ bem('number', null, base) }} title="{{ title }}" aria-label="{{ title }}">{{ item_key }}</span>
+          {% else %}
+            <a {{ bem('number', null, pager) }} href="{{ item_value.href }}" title="{{ title }}" aria-label="{{ title }}">
+              {{ item_key }}
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+
+      <li {{ bem('item', ['next'], base) }}>
+        {% if pagination.current != pagination.items|length %}
+          <a href="{{ pagination.next.href }}" title="{{ "Next Page"|t }}" aria-label="{{ "Next Page"|t }}">{{ "Next"|trans }}</a>
+        {% else %}
+          <span {{ bem('inactive', [], base) }}>{{ "Next"|trans }}</span>
+        {% endif %}
+      </li>
+    </ul>
+  </nav>
+{% endif %}

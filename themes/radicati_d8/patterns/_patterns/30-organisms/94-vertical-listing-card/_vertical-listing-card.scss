@@ -1,0 +1,64 @@
+@import "../../variables";
+
+
+.card--vertical-listing-card {
+  $image-width-md: 373px + 15px;
+  $image-width-lg: 373px + 15px;
+  // $image-width-without-unit: $image-width / 1px;
+
+  @include rem('padding-bottom', 40px);
+
+  .card__link {
+    height: unset;
+    width: unset;
+  }
+
+  .card__inner {
+    display: flex;
+    flex-wrap: wrap;
+
+    .card__header {
+      flex: 1 0 100%;
+      padding: 0;
+      text-align: center;
+
+      @include breakpoint($breakpoint-md) {
+        @include rem('flex', 0 1 ($image-width-md));
+        @include rem('padding-right', 15px);
+        text-align: left;
+      }
+
+      .field--name-field-image {
+        display: inline-block;
+        width: 100%;
+
+        img {
+          height: auto;
+          // max-width: 100%;
+          @include rem('max-width', $image-width-md - 15px);
+        }
+      }
+    }
+  }
+
+  .card__body {
+    flex: 1 0 100%;
+
+    @include breakpoint($breakpoint-md) {
+      flex-basis: calc(100% - #{$image-width-md});
+      flex-basis: calc(100% - ((#{$image-width-md}/1px)rem / 10));
+      flex-shrink: 1;
+      @include rem('padding-left', 20px);
+    }
+
+    @include breakpoint($breakpoint-lg) {
+      flex-basis: calc(100% - #{$image-width-lg});
+      flex-basis: calc(100% - ((#{$image-width-lg}/1px)rem / 10));
+      flex-shrink: 1;
+    }
+
+    .card__label {
+      @include rem('padding-bottom', 5px);
+    }
+  }
+}

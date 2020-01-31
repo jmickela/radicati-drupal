@@ -1,0 +1,110 @@
+footer {
+  background-color: $color-alt-dark-gray;
+  color: white;
+  @include rem('padding', 25px 0 0);
+
+  @include breakpoint($breakpoint-md) {
+    @include rem('padding-top', 50px);
+    @include rem('padding-bottom', 31px);
+  }
+
+  .region.region-footer-branding {
+    display: none;
+    @include rem('padding-top', 2px);
+    // text-align: center;
+
+    @include breakpoint($breakpoint-md) {
+      display: block;
+      text-align: left;
+    }
+  }
+
+  .region.region-copyright {
+    color: $color--light-gray;
+    font-family: $font--gt-america;
+    // @include rem('padding-bottom', 31px);
+    text-align: center;
+
+    a {
+      color: $color--light-gray;
+    }
+  }
+}
+
+ul.menu--footer {
+  align-items: center;
+  display: none;
+  flex-direction: column;
+  margin: 0;
+  @include rem('padding-top', 20px);
+  text-align: center;
+
+  @include breakpoint($breakpoint-md) {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    // @include rem('padding-top', 53px);
+    padding-top: 0;
+    text-align: left;
+  }
+
+  @include breakpoint($footer-menu-wrap-breakpoint) {
+    @include rem('padding-bottom', 33px);
+  }
+
+  // root-level menu items
+  >li {
+    @include rem('padding', 0 10px 20px);
+
+    @include breakpoint($breakpoint-md) {
+      flex: 0 0 33%;
+      @include rem('padding-bottom', 40px);
+    }
+
+    @include breakpoint($footer-menu-wrap-breakpoint) {
+      flex-basis: 20%;
+      @include rem('padding-bottom', 11px);
+    }
+
+    >a {
+      font-stretch: condensed;
+      font-weight: bold;
+      letter-spacing: 0;
+      text-transform: uppercase;
+
+      @include breakpoint($breakpoint-md) {
+        @include rem('margin-bottom', 21px);
+      }
+    }
+  }
+
+  li {
+
+
+    a {
+      color: white;
+      font-family: $font--gt-america;
+      @include rem('font-size', 16px);
+      @include rem('letter-spacing', .5px);
+      @include rem('line-height', 22.5px);
+
+
+      &:hover {
+        color: rgba(white, .8);
+      }
+
+      &.is-active {
+        color: white;
+      }
+    }
+  }
+
+  ul.sub-menu {
+    display: none;
+    flex-direction: column;
+
+    @include breakpoint($breakpoint-md) {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{% set attributes = attributes.removeAttribute('role') %}
+
+{% set createdDate = node.getCreatedTime|format_date('short_month_day_year') %}
+
+
+{% include "@organisms/94-vertical-listing-card/_vertical-listing-card.twig" with {
+
+  promoted: promoted,
+  sticky: node.sticky,
+  published: published,
+  created: createdDate,
+  date: date,
+  view_mode: view_mode,
+  content_type: node.bundle|clean_class,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  page: page,
+  url: url,
+  label: label,
+  content: content,
+  summary: summary,
+  attributes: attributes
+} only %}

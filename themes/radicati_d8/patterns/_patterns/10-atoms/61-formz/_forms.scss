@@ -1,0 +1,520 @@
+@import '../../variables';
+
+// Change these variables to adjust the styling!
+$label-shrink-ratio: .8;
+$textbox-height: 53px;
+$textarea-height: 100px;
+$max-form-width: 500px;
+$input-side-padding: 10px;
+$input-top-padding: 10px;
+$input-background-color: white;
+$input-vertical-margin: 20px;
+$label-regular-color: $color--blackish;
+$label-placeholder-color: $color--medium-gray;
+$primary-form-color: $color--blue;
+$secondary-form-color: $color--light-green;
+$form-border-width: 2px;
+$label-font-size: 16px;
+$label-line-height: 1.5;
+
+form {
+
+  /**
+   * general form styling
+   */
+
+  width: 100%;
+
+  @include breakpoint($breakpoint-sm) {
+    margin-left: auto;
+    margin-right: auto;
+    @include rem('max-width', $max-form-width);
+  }
+
+  input,
+  textarea {
+    background-color: $input-background-color;
+    color: $color--blackish;
+    display: inline-block;
+    font-family: $font--primary;
+    @include rem('font-size', $label-font-size);
+    @include rem('padding', 5px $input-side-padding);
+    width: 100%;
+  }
+
+  input:not([type='file']),
+  textarea {
+    border: $form-border-width solid $primary-form-color;
+    @include rem('border-radius', 0);
+  }
+
+  input,
+  label,
+  textarea {
+    position: relative;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    @include rem('height', $textbox-height);
+  }
+
+  textarea {
+    @include rem('height', $textarea-height);
+  }
+
+  // add a bit of vertical margin around inputs that aren't checkboxes, radio buttons, or submit buttons
+  input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='image']):not([type='file']),
+  textarea {
+    @include rem('margin', $input-vertical-margin 0);
+
+    // In case javascript is disabled, we don't want our forms to look like shit. So, we'll assume that all inputs have their label first :P
+    &.label-before {
+      margin-top: 0;
+    }
+
+    &.label-after {
+      margin-bottom: 0;
+    }
+  }
+
+  // however, if it's in a drupal webform div, apply the margin to the div instead of the input
+  div.form-item {
+    @include rem('margin', $input-vertical-margin 0);
+
+    input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='image']):not([type='file']),
+    textarea {
+
+      // since drupal webforms put the label first, it's fairly safe to assume that these are "label-first". I've just added the not to catch any weirdos if the client does have javascript running.
+      &:not(.label-after) {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+
+      &.label-after {
+        margin-top: 0;
+      }
+    }
+  }
+
+
+
+  // set height of many inputs to be consistent
+  input:not([type='checkbox']):not([type='radio']):not([type='text']):not([type='color']):not([type='submit']):not([type='image']) {
+    @include rem('height', $textbox-height);
+    // width: unset;
+  }
+
+  // here's where you set the width of most inputs
+  input:not([type='checkbox']):not([type='radio']):not([type='color']):not([type='submit']):not([type='image']),
+  textarea {}
+
+  // and styling for drupal webforms
+  div.form-item:not(.form-type-radio),
+  .form-wrapper {
+    width: 100%;
+  }
+
+  // add a little spacing between side-by-side items
+  div.webform-options-display-side-by-side {
+    display: flex;
+    flex-wrap: wrap;
+
+    .form-item {
+      @include rem('margin-right', 20px);
+      display: inline-flex;
+      // @include rem('flex', 1 0 200px);
+      flex: 1 0 auto;
+    }
+  }
+
+  // general label styles
+  label {
+    color: $label-regular-color;
+    display: inline-block;
+    font-size: $label-font-size;
+    line-height: $label-line-height;
+    transition: all 0.5s ease-in-out;
+    width: auto;
+    z-index: 2;
+
+    &::after {
+      transition: all 0.5s ease-in-out;
+    }
+
+    @include breakpoint($breakpoint-lg) {
+      // @include rem('left', 10px);
+    }
+  }
+
+  // this fixes textarea scrollbars on ie and prevents the weird margin issue (which screws up the label) when textareas are resized horizontally
+  textarea {
+    overflow: auto;
+    resize: vertical;
+  }
+
+  // massaging color input styling
+  input[type='color'] {
+    @include rem('height', $textbox-height);
+    // @include rem('width', 2 * $textbox-height);
+    height: 2em;
+    @include rem('padding', 2px);
+    width: 3em;
+    // width: unset;
+  }
+
+  // oh buttons, let's make you pretty
+  button[type='submit'],
+  input[type='submit'] {
+    @include button($color--blue, white, $font--primary, $form-border-width, true);
+    @include rem('padding', 5px 20px);
+  }
+
+  button[type='submit'],
+  input[type='submit'],
+  input[type='image'] {
+    @include rem('border-radius', 0);
+    cursor: pointer;
+    font-size: $label-font-size;
+    @include rem('height', $textbox-height);
+    @include rem('margin', 5px 10px);
+    vertical-align: middle;
+    width: unset;
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: $color--blue;
+    }
+  }
+
+
+  // If there's a list, it's probably being used to contain form elements...
+  ul {
+    list-style: none;
+  }
+
+  // Checkboxes and radio buttons look like shit if you don't fix the styling a bit. This method does depend on there being a container around your checkbox/radio button and its label.
+  // In this example form, checkboxes and radio buttons are inside list elements
+  li,
+  .form-item.form-type-radio,
+  .form-item.form-type-checkbox {
+
+    align-items: center;
+    display: flex;
+    // display: inline-flex;
+    flex-direction: row;
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      display: inline-block;
+      @include rem('flex', 0 0 25px);
+      @include rem('width', 25px);
+      // @include rem('height', $textbox-height);
+      @include rem('height', 23px);
+
+      &:checked+label {
+        color: inherit;
+      }
+    }
+
+    label {
+      align-items: center;
+      color: inherit;
+      display: flex;
+      flex-direction: row;
+      flex: 1 0 auto;
+      font-size: $label-font-size;
+      font-weight: inherit;
+      left: 0;
+      letter-spacing: inherit;
+      margin: 0;
+      top: 0;
+      width: auto;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  // range inputs also have trouble lining up with their labels without a little bit of help. A wrapper element is necessary to make it pretty
+  .input--range {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    label {
+      padding-right: 1ex;
+    }
+  }
+
+  // Styling select inputs
+  select {
+    $svg-color: $primary-form-color;
+    @import '00-base/mixins/inline-svg/_!_svgs/_fontawesome-chevron-down--solid.scss';
+
+    border: $form-border-width solid $primary-form-color;
+    border-radius: 0;
+    color: $label-regular-color;
+    display: block;
+    font-size: $label-font-size;
+    // line-height: $textbox-height;
+    @include rem('height', $textbox-height);
+    // margin: 0;
+    max-width: 100%;
+    @include rem('padding', 5px $input-side-padding);
+    position: relative;
+    width: 100%;
+
+    background-image: inline-svg($svg-chevron-down--solid), linear-gradient(to bottom, $input-background-color 0%, $input-background-color 100%);
+
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+
+    // background-size: 1em auto, 100%;
+
+    // undo the default select styling:
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    option {
+      font-weight: normal;
+    }
+  }
+
+
+
+
+
+  /**
+   * Animated Labels
+   */
+
+  // Ok, I've got the javascript set up to detect if an input is full width, and to detect whether the input or the label comes first. Now I need to set up styling so that .label-before.full-width, .label-before:not(.full-width), .label-after.full-width, and .label-after:not(.full-width) all work correctly!
+
+  label.placeholder {
+    // border: 1px dashed blue;
+
+    color: $label-placeholder-color;
+    // @include rem('line-height', $textbox-height);
+    @include rem('padding-left', $input-side-padding);
+    @include rem('padding-right', $input-side-padding);
+
+    // Here's the magic secret! Inline block elements aren't fully compatible with negative margins -- they work up to a point and then increasingly negative margins cease to have any effect. Meanwhile block level elements are 100% wide unless you explicitly set the width -- no good if you want your label to overlay the input border like the fieldset legends. *BUT* tables automatically shrink to fit their contents *AND* respond beautifully to negative margins :) :) :)
+    // display: table-cell;
+    display: flex;
+    left: 0;
+    width: 100%;
+
+    // Make sure the required asterisk gets styled correctly!
+    &::after {
+      height: 100%;
+      @include rem('margin', 0 10px);
+      @include rem('min-width', 6px);
+    }
+
+    &.label-before {
+      // @include rem('margin-bottom', -1 * $textbox-height);
+      // @include rem('top', $input-vertical-margin);
+      // top: calc(#{$textbox-height} / 2 + 1rem);
+      // top: calc(#{$textbox-height} + #{$input-top-padding});
+      // vertical-align: bottom;
+      align-items: flex-end;
+
+      // Make sure the required asterisk doesn't get subscripted!
+      &::after {
+        align-self: flex-end;
+      }
+    }
+
+    &.label-after {
+      // @include rem('margin-top', -1 * $textbox-height);
+      // @include rem('bottom', $input-vertical-margin);
+      // bottom: calc(#{$textbox-height} / 2 + 1rem);
+      // vertical-align: top;
+      align-items: flex-start;
+
+      &::after {
+        align-self: flex-start;
+      }
+    }
+
+    // if the label's input is currently filled or being interacted with
+    &.busy,
+    &.filled {
+      color: $label-regular-color;
+      font-size: calc(#{$label-shrink-ratio} * #{$label-font-size});
+      @include rem('left', -1 * $input-side-padding);
+      width: calc(100% * #{$label-shrink-ratio});
+
+      @include breakpoint($breakpoint-sm) {
+        margin-right: auto;
+      }
+
+      &::after {
+        height: calc(100% * #{$label-shrink-ratio});
+      }
+
+      &.label-before {
+        // top: calc((-.5 * #{$textbox-height}) + #{$input-vertical-margin} - 2ex);
+        top: 0;
+      }
+
+      &.label-after {
+        bottom: calc((-.5 * #{$textbox-height}) + #{$input-vertical-margin} - 2ex);
+        bottom: 0;
+      }
+    }
+
+    // Textarea labels that come after the textarea need to use the textarea-height variable instead!
+    &.textarea-label {
+
+      &.label-after {
+        bottom: calc(#{$textarea-height} + #{$input-vertical-margin} - #{$textbox-height});
+
+        &.busy,
+        &.filled {
+          bottom: calc((-.5 * #{$textbox-height}) + #{$input-vertical-margin} - 2ex);
+        }
+      }
+    }
+  }
+
+  input.placeholder,
+  textarea.placeholder {
+    display: block;
+    //   &.label-before {
+    //     overflow: visible;
+
+    //     &::after {
+    //       border: 1px dashed pink;
+    //       content: 'asdf';
+    //       padding-bottom: 1px;
+    //       display: block;
+    //       height: 30px;
+    //       width: 100px;
+    //       position: relative;
+    //       z-index: 10;
+    //       box-sizing: border-box;
+    //       visibility: visible;
+    //     }
+    //   }
+  }
+
+  // .textarea.placeholder.label-before::after {
+  //   content: 'abcd';
+  //   border: 1px dotted green;
+  //   display: block;
+  //   height: 10px;
+  //   width: 10px;
+  // }
+
+
+
+  // This works, but uses absolute positioning. That means that it's essential that each input and label pair be enclosed in another element that can be positioned relatively. Both Gravity Forms in WP and Webforms in Drupal do this, but random forms that clients paste in may not. (eg, the footer form on PRC). So this is cool, but better not depend on it :(
+
+
+  // div.input {
+  //   position: relative;
+  // }
+
+  // label.placeholder {
+  //   border: 1px dashed black;
+
+  //   &.label-before.full-width {
+  //     @include rem('left', $input-side-padding);
+  //     position: absolute;
+  //     @include rem('top', $input-vertical-margin);
+  //   }
+
+  //   &.label-after.full-width {
+  //     @include rem('left', $input-side-padding);
+  //     // @include rem('margin-bottom', -1 * $textbox-height);@include rem('top', -1 * $textbox-height);
+  //     position: absolute;
+  //     @include rem('bottom', $input-vertical-margin);
+  //   }
+
+  //   // if the label's input is currently filled or being interacted with
+  //   &.busy,
+  //   &.filled {
+  //     font-size: $label-shrink-ratio * 1em;
+
+
+  //     &.label-before.full-width {
+  //       left: 0;
+  //       // @include rem('top', 5px);
+  //       // top: calc(#{$textbox-height} - 10px);
+  //       top: calc((-.5 * #{$textbox-height}) + #{$input-vertical-margin} - 2ex);
+  //       // @include rem('bottom', .5 * $textbox-height + $input-vertical-margin);
+  //       // bottom: calc(.5 * #{$textbox-height} + #{$input-vertical-margin} + 2ex);
+  //     }
+
+  //     &.label-after.full-width {
+  //       left: 0;
+  //       // @include rem('top', -5px);
+  //       bottom: calc((-.5 * #{$textbox-height}) + #{$input-vertical-margin} - 2ex);
+  //     }
+  //   }
+  // }
+}
+
+#block-boardlisting,
+#block-stafflisting,
+.landing-page__listing-row {
+  #content-listing-select {
+    $svg-color: $primary-form-color;
+    @import '00-base/mixins/inline-svg/_!_svgs/_fontawesome-chevron-down--solid.scss';
+
+    border: $form-border-width solid $primary-form-color;
+    border-radius: 0;
+    color: $label-regular-color;
+    display: block;
+    font-size: $label-font-size;
+    // line-height: $textbox-height;
+    @include rem('height', $textbox-height);
+    // margin: 0;
+    max-width: 100%;
+    @include rem('padding', 5px $input-side-padding);
+    position: relative;
+    width: 100%;
+
+    background-image: inline-svg($svg-chevron-down--solid), linear-gradient(to bottom, $input-background-color 0%, $input-background-color 100%);
+
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+
+    // background-size: 1em auto, 100%;
+
+    // undo the default select styling:
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    option {
+      font-weight: normal;
+    }
+
+    @include breakpoint($breakpoint-lg) {
+      display: none;
+    }
+  }
+
+  label[for='content-listing-select'] {
+    // @include breakpoint($breakpoint-lg) {
+      display: none;
+    // }
+  }
+}

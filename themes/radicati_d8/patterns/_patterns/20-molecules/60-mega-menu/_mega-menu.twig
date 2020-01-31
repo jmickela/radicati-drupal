@@ -1,0 +1,90 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+
+{#<ul class="menu menu-level-{{ items|first.menu_level }}">#}
+{#  {% for key, item in items if key|first != '#' %}#}
+{#    {% set menu_item_classes = [#}
+{#      'menu-item',#}
+{#      item.is_expanded ? 'menu-item--expanded',#}
+{#      item.is_collapsed ? 'menu-item--collapsed',#}
+{#      item.in_active_trail ? 'menu-item--active-trail',#}
+{#    ] %}#}
+
+{#    <li{{ item.attributes.addClass(menu_item_classes) }}>#}
+{#      {{ link(item.title, item.url) }}#}
+
+{#      {% set rendered_content = item.content|without('') %}#}
+{#      {% if rendered_content|render %}#}
+{#        {{ rendered_content }}#}
+{#      {% endif %}#}
+{#    </li>#}
+{#  {% endfor %}#}
+{#</ul>#}
+
+
+
+{{ menus.menu_links(menu.items, menu.attributes, 0, menu.mods) }}
+
+{% macro menu_links(items, attributes, menu_level, mods) %}
+  {% import _self as menus %}
+  {% if items %}
+
+    {% if menu_level == 0 %}
+      {% set base = 'menu' %}
+    {% else %}
+      {% set base = 'sub-menu' %}
+    {% endif %}
+
+    {% embed "@atoms/20-list/_list.twig" with {
+      list: {
+        type: 'ul',
+        base: base,
+        items: items,
+        mods: mods,
+        menu_level: menu_level,
+        attributes: attributes
+      }
+    } only %}
+      {% block list_content %}
+        {% for item in list.items %}
+          {% include "@molecules/60-mega-menu/_mega-menu-item.twig" with {
+            menu_item: {
+              mods: item.content|render|striptags|without('')|trim != '' ? [ "has-dropdown" ] : [],
+              parent: list.base,
+              attributes: list.attributes,
+              item: item,
+              menu_level: menu_level,
+              is_expanded: item.is_expanded,
+              is_collapsed: item.is_collapsed,
+              is_active_trail: item.is_active_trail
+            }
+          } only %}
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endif %}
+{% endmacro %}

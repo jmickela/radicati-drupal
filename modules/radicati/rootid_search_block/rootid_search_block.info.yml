@@ -1,0 +1,5 @@
+name: 'Search Block'
+type: module
+description: 'A simple expanding search block.'
+core: 8.x
+package: 'rootid'

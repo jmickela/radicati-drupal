@@ -1,0 +1,69 @@
+@import "../../../variables";
+
+
+$dropdownsearch__height: 125px;
+$dropdowntransition-time: .5s;
+
+.dropdownsearch {
+  background-color: lightgray;
+  position: relative;
+}
+
+.dropdownsearch__toggle {
+  cursor: pointer;
+}
+
+.dropdownsearch__dropdown {
+  align-items: center;
+  display: flex;
+  @include rem('height', $dropdownsearch__height);
+  justify-content: center;
+  left: 0;
+  @include rem('max-height', $dropdownsearch__height);
+  position: absolute;
+  top: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform $dropdowntransition-time ease;
+  width: 100%;
+  z-index: 10;
+  overflow: hidden;
+
+  // hide the extra drupal submit button
+  input[type='submit'] {
+    display: none;
+  }
+}
+
+.dropdownsearch--open {
+  .dropdownsearch__dropdown {
+    transform: scaleY(1);
+    transition: transform $dropdowntransition-time ease;
+  }
+}
+
+
+// this doesn't seem to exist
+// .dropdownsearch__button {
+//   padding: 0;
+//   background: transparent;
+
+//   &:active,
+//   &:focus {
+//     outline: none;
+//   }
+// }
+
+// nor does this
+// .dropdownsearch__input {
+//   border-width: 0 0 3px 0;
+//   border-color: black;
+//   background: transparent;
+//   color: white;
+//   outline: 0;
+//   width: 300px;
+
+//   &::placeholder {
+//     color: white;
+//   }
+// }

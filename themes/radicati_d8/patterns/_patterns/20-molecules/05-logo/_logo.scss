@@ -1,0 +1,22 @@
+@import "../../variables";
+
+.site-logo svg {
+  fill: white;
+  @include rem('max-width', 100px);
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('max-width', 142px);
+  }
+}
+
+// Removed fun stuff, no one likes fun stuff.
+//.site-logo svg:hover {
+//
+//  #logo-text-aclu {
+//    fill: $color--lighter-blue;
+//  }
+//
+//  #logo-text-california, #logo-text-northern {
+//    fill: $color--dark-red;
+//  }
+//}

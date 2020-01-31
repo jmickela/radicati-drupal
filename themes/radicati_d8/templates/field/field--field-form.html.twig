@@ -1,0 +1,7 @@
+{% for item in items %}
+  <div{{ attributes }}>
+    {% include "@organisms/73-full-width-form/_full-width-form.twig" with {
+      content: item.content
+    } only %}
+  </div>
+{% endfor %}

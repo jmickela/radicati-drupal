@@ -1,0 +1,83 @@
+@import "../../variables";
+
+.accordion {
+  @include rem('margin-bottom', 11px);
+  background: $color--rosalee-blue;
+  color: $color--blackish;
+}
+
+.accordion--open .accordion__label {
+  margin: 0;
+}
+
+.accordion__label button {
+  @include rem('padding', 10px 25px 10px 10px);
+  @include rem('font-size', 24px);
+  font-family: $font--gt-america;
+  font-stretch: condensed;
+  line-height: 1.2;
+  text-transform: none;
+  font-weight: normal;
+  border: 0;
+  background: none;
+  text-align: left;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  &:after {
+    //@include rem('width', 32px);
+    //@include rem('height', 32px);
+    @include rem('right', 12px);
+    //line-height: 1;
+    content: "\e80a";
+    font-family: $fontello-font-name;
+    position: absolute;
+    color: $color-alt-dark-gray;
+
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 100ms ease;
+
+    @include breakpoint($breakpoint-lg) {
+      @include rem('right', 32px);
+    }
+  }
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('padding', 17px 60px 17px 20px);
+  }
+}
+
+.accordion__content {
+  @include rem('font-size', 18px);
+  @include rem('padding', 20px 15px 15px 15px);
+  background: white;
+  display: none;
+
+  a {
+    font-weight: bold;
+    color: $color--blue;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  @include breakpoint($breakpoint-lg) {
+    @include rem('padding', 20px 66px 9px 65px);
+  }
+
+}
+
+.accordion--open {
+  .accordion__label button:after {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .accordion__content {
+    display: block;
+  }
+}

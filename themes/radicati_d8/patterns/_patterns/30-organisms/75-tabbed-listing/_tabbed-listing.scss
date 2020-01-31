@@ -1,0 +1,68 @@
+@import "../../variables";
+
+.tabbed-listing {
+  border: 0 !important;
+}
+
+.tabbed-listing__list {
+  background: none;
+  border: 0;
+  padding: 0 0 14px 0 !important;
+
+  border-radius: 0;
+  border-bottom: 2px solid $color--light-gray;
+
+  display: none;
+
+  @include breakpoint($breakpoint-lg) {
+    display: block;
+  }
+}
+
+.tabbed-listing__list-item {
+  border: 0 !important;
+  background: none !important;
+
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+
+  &:first-child {
+    margin-left: 0 !important;
+  }
+}
+
+.tabbed-listing__list-item-link {
+  @include rem('font-size', 16px);
+
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+  padding-bottom: 5px !important;
+
+  color: $color--blue !important;
+  text-align: center;
+  font-family: $font--gt-america;
+  border: 0;
+  background: none;
+
+
+}
+
+.tabbed-listing__tabselect {
+
+  @include breakpoint($breakpoint-lg) {
+    display: none;
+  }
+}
+
+
+.tabbed-listing__list-item.ui-state-active {
+
+  .tabbed-listing__list-item-link {
+    color: $color--light-gray !important;
+    border-bottom: 2px solid $color--light-orange;
+  }
+}
+
+.ui-tabs .ui-tabs-panel {
+  @include rem('padding', 20px 0 0 0);
+}
